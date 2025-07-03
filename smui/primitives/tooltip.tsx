@@ -7,7 +7,7 @@ import {
   TooltipTrigger as AriaTooltipTrigger,
   TooltipTriggerComponentProps as AriaTooltipTriggerComponentProps,
 } from "react-aria-components"
-import { tv, VariantProps, ClassValue } from "../utils"
+import { tv, VariantProps, ClassValue, WithDefaultChildren } from "../utils"
 
 /** # Usage ---------------------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ export const tooltipVariants = tv({
 
 // # Props ----------------------------------------------------------------------------------------
 
-export type TooltipRenderProps = AriaTooltipRenderProps
+export type TooltipRenderProps = WithDefaultChildren<AriaTooltipRenderProps>
 export type TooltipProps = Omit<AriaTooltipProps, "className"> & {
   variants?: TooltipVariantProps
   className?: ClassValue

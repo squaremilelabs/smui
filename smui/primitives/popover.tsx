@@ -21,6 +21,10 @@ __Notes__
 - Combines RAC renderProps from both `Popover` and `Dialog`
 - Does not implement an `OverlayArrow`
 
+__Composition__
+- `<Popover /> ... <AriaPopover />` (slots.popover – INTERNAL)
+- `<Popover /> ... <AriaDialog />` (slots.content – INTERNAL)
+
 __Basic (with PopoverTrigger)__
 ```tsx
   <PopoverTrigger>

@@ -21,6 +21,11 @@ __Notes__
 - Reduces the RAC composition (`ModalOverlay`, `Modal`, `Dialog`) to a single component.
 - Combines RAC renderProps from both `Modal` and `Dialog`
 
+__Composition__
+- `<Modal /> ... <AriaModalOverlay />` (slots.overlay – INTERNAL)
+- `<Modal /> ... <AriaModal />` (slots.modal – INTERNAL)
+- `<Modal /> ... <AriaDialog />` (slots.content – INTERNAL)
+
 __Basic (with ModalTrigger)__
 ```tsx
   <ModalTrigger>

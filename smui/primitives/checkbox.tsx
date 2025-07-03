@@ -29,6 +29,12 @@ __Notes__
 - Checkbox children are wrapped in a `span` element to apply the label styles.
 - CheckboxGroup can implement the SMUI `field` components & variants.
 
+__Composition__
+- `<Checkbox />` (slots.checkboxBase)
+- `<Checkbox />` ... `<Icon />` (slots.checkboxIcon - INTERNAL)
+- `<Checkbox />` ... `<span />` (slots.checkboxLabel - INTERNAL)
+- `<CheckboxGroup />` (slots.group)
+
 __Checkbox__
 ```tsx
   // Icon only

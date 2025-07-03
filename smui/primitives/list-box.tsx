@@ -9,8 +9,8 @@ import {
   ListBoxItemProps as AriaListBoxItemProps,
   ListBoxItemRenderProps as AriaListBoxItemRenderProps,
   ListBoxSectionProps as AriaListBoxSectionProps,
-  Header,
-  Collection,
+  Header as AriaHeader,
+  Collection as AriaCollection,
   Key,
 } from "react-aria-components"
 import { cn, DeepPartial, WithDefaultChildren, ClassValue, tv, VariantProps } from "../utils"
@@ -22,6 +22,12 @@ https://react-spectrum.adobe.com/react-aria/ListBox.html
 __Notes__
 - Enforces dynamic items (no static)
 - For sections, passes `Header` as a prop instead of an expected child
+
+__Composition__
+- `<ListBox />` (slots.base)
+- `<ListBoxItem />` (slots.item)
+- `<ListBoxSection />` (slots.section - INTERNAL)
+- `<ListBoxSection />` ... `<AriaHeader />` (slots.sectionHeader - INTERNAL)
 
 __Basic (Items only)__
 ```tsx
@@ -158,8 +164,8 @@ export function ListBox<T extends object>({
   )
 }
 
-export function ListBoxItem({ id, className, ...props }: ListBoxItemProps) {
-  return <AriaListBoxItem id={id} className={cn(className)} {...props} />
+export function ListBoxItem({ className, ...props }: ListBoxItemProps) {
+  return <AriaListBoxItem {...props} className={cn(className)} />
 }
 
 export function ListBoxSection<T extends object>({
@@ -172,8 +178,8 @@ export function ListBoxSection<T extends object>({
 }: ListBoxSectionProps<T>) {
   return (
     <AriaListBoxSection {...props} id={id} className={cn(classNames?.base)}>
-      {header && <Header className={cn(classNames?.header)}>{header}</Header>}
-      <Collection items={items}>{children}</Collection>
+      {header && <AriaHeader className={cn(classNames?.header)}>{header}</AriaHeader>}
+      <AriaCollection items={items}>{children}</AriaCollection>
     </AriaListBoxSection>
   )
 }

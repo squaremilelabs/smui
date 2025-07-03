@@ -18,6 +18,10 @@ https://react-spectrum.adobe.com/react-aria/GridList.html
 __Notes__
 - Enforces dynamic items (no static)
 
+__Composition__
+- `<GridList />` (slots.base)
+- `<GridListItem />` (slots.item)
+
 ```tsx
   <GridList items={items}>
     {(item, classNames) => (

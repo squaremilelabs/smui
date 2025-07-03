@@ -20,6 +20,10 @@ __Notes__
 - `Button` has no special modifications from the RAC component.
 - There is no `ButtonGroup` RAC. Uses the `Group` component.
 
+__Composition__
+- `<Button />` (slots.button)
+- `<ButtonGroup />` (slots.group)
+
 __Button__
 ```tsx
   <Button>

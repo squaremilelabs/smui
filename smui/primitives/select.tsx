@@ -28,6 +28,12 @@ __Notes__
 - Same as RAC, excpects a `ListBox` descendent.
 - Combines the `Button` and `SelectValue` into a single component, `SelectButton`.
 
+__Composition__
+- `<Select />` (slots.base)
+- `<SelectButton />` (slots.button)
+- `<SelectButton />` ... `<AriaSelectValue />` (slots.buttonValue - INTERNAL)
+- `<SelectButton />` ... `<SelectButtonIcon />` (slots.buttonIcon - INTERNAL)
+
 __Basic__
 ```tsx
   <Select>
@@ -83,9 +89,9 @@ export const selectVariants = tv({
     base: [],
     // <SelectButton />
     button: [],
-    // <SelectButton /> ... <SelectValue />
+    // <SelectButton /> ... <AriaSelectValue />
     buttonValue: [],
-    // <SelectButton /> ... <Icon />
+    // <SelectButton /> ... <SelectButtonIcon />
     buttonIcon: [],
   },
   variants: {
@@ -178,7 +184,6 @@ export function Select({ variants, fieldVariants, classNames, children, ...props
       icon: buttonIconStyles({ className: classNames?.button?.icon }),
     },
     field: {
-      base: fieldBaseStyles({ className: classNames?.field?.base }),
       label: fieldLabelStyles({ className: classNames?.field?.label }),
       inputBox: fieldInputBoxStyles({ className: classNames?.field?.inputBox }),
       description: fieldDescriptionStyles({ className: classNames?.field?.description }),

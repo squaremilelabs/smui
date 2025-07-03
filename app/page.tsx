@@ -7,16 +7,30 @@ import { GridList, GridListItem } from "@/smui/primitives/grid-list"
 import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box"
 import { TextField, TextFieldInput, TextFieldTextArea } from "@/smui/primitives/text-field"
 import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field"
+import { Tab, Tabs } from "@/smui/primitives/tabs"
 
 export default function Page() {
   return (
     <div className="flex flex-col gap-8 p-4">
+      <Tabs
+        items={[
+          { id: "tab1", name: "Tab 1" },
+          { id: "tab2", name: "Tab 2" },
+          { id: "tab3", name: "Tab 3" },
+        ]}
+      >
+        {(item, classNames) => (
+          <Tab id={item.id} textValue={item.name} className={classNames.tab}>
+            {({ isSelected }) => `${item.name} ${isSelected ? "(selected)" : ""}`}
+          </Tab>
+        )}
+      </Tabs>
       <div className="flex flex-col gap-2">
         <h1 className="border-b text-xl font-bold">Button</h1>
         <h2 className="text-lg font-semibold">Button</h2>
         <Button className="self-start">Click me</Button>
         <h2 className="text-lg font-semibold">ButtonGroup</h2>
-        <ButtonGroup classNames={{ base: "flex gap-1", button: "border" }}>
+        <ButtonGroup>
           {(_, classNames) => (
             <>
               <Button className={classNames.button}>Left</Button>
@@ -29,7 +43,7 @@ export default function Page() {
       <div className="flex flex-col gap-2">
         <h1 className="border-b text-xl font-bold">Checkbox</h1>
         <h2 className="text-lg font-semibold">Checkbox</h2>
-        <Checkbox classNames={{ base: "flex" }}>Check me</Checkbox>
+        <Checkbox>Check me</Checkbox>
         <h2 className="text-lg font-semibold">CheckboxGroup</h2>
         <CheckboxGroup aria-label="CheckboxGroup" classNames={{ checkbox: { base: "flex " } }}>
           {(renderProps, classNames) => (
@@ -47,10 +61,7 @@ export default function Page() {
           )}
         </CheckboxGroup>
         <h2 className="text-lg font-semibold">CheckboxGroup with Field Components</h2>
-        <CheckboxGroup
-          fieldVariants={{}}
-          classNames={{ checkbox: { base: "flex" }, field: { base: "flex flex-col" } }}
-        >
+        <CheckboxGroup fieldVariants={{}}>
           {(renderProps, classNames) => (
             <>
               <FieldLabel className={classNames.field.label}>Choose options</FieldLabel>
@@ -160,18 +171,15 @@ export default function Page() {
       <div className="flex flex-col gap-2">
         <h1 className="border-b text-xl font-bold">TextField</h1>
         <h2 className="text-lg font-semibold">Basic (with Input)</h2>
-        <TextField aria-label="TextField" classNames={{ input: "border" }}>
+        <TextField aria-label="TextField">
           {(_, classNames) => <TextFieldInput className={classNames.input} />}
         </TextField>
         <h2 className="text-lg font-semibold">With TextArea</h2>
-        <TextField aria-label="TextField" classNames={{ textarea: "border" }}>
+        <TextField aria-label="TextField">
           {(_, classNames) => <TextFieldTextArea className={classNames.textarea} />}
         </TextField>
         <h2 className="text-lg font-semibold">With FieldComponents</h2>
-        <TextField
-          fieldVariants={{}}
-          classNames={{ input: "border", field: { base: "flex flex-col" } }}
-        >
+        <TextField fieldVariants={{}}>
           {(_, classNames) => (
             <>
               <FieldLabel className={classNames.field.label}>Label</FieldLabel>
