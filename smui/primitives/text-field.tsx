@@ -34,7 +34,7 @@ __Basic (with Input)__
   </Select>
 ```
 
-__Basic (with TextArea)__
+__With TextArea__
 ```tsx
   <TextField>
     {(renderProps, classNames) => (
