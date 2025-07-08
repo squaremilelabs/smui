@@ -29,6 +29,7 @@ __Notes__
 - Combines the `Button` and `SelectValue` into a single component, `SelectButton`.
 
 __Composition__
+- `<SelectPopover />` (not part of slots, but inherits popoverVariants for styling)
 - `<Select />` (slots.base)
 - `<SelectButton />` (slots.button)
 - `<SelectButton />` ... `<AriaSelectValue />` (slots.buttonValue - INTERNAL)
@@ -36,14 +37,16 @@ __Composition__
 
 __Basic__
 ```tsx
-  <Select>
+  <Select
+    variants={{} as SelectVariantProps}
+    >
     {(renderProps, classNames) => (
       <>
-        <SelectButton classNames={classNames.button>}>
+        <SelectButton classNames={classNames.button}>
           {children || (renderProps) => (children)}
         </SelectButton>
-        <SelectPopover variants={{} as PopoverVariantProps}>
-          <ListBox items={items} />
+        <SelectPopover className={classNames.popover}>
+          <ListBox items={items} /> // Shortened for brevity. See ListBox component for full usage.
         </SelectPopover>
       </>
     )}
@@ -64,8 +67,8 @@ __With Field Components__
         </SelectButton>
         <FieldDescription className={classNames.field.description}>
         <FieldError className={classNames.field.error}>
-        <SelectPopover variants={{} as PopoverVariantProps}>
-          <ListBox />
+        <SelectPopover className={classNames.popover}>
+          <ListBox items={items} /> // Shortened for brevity. See ListBox component for full usage.
         </SelectPopover>
       </>
     )}
@@ -82,7 +85,13 @@ const SelectButtonIcon = ChevronsUpDownIcon
 
 // # Variants -------------------------------------------------------------------------------------
 
-export type SelectVariantProps = VariantProps<typeof selectVariants>
+export type BaseSelectVariantProps = VariantProps<typeof selectVariants>
+
+export type SelectVariantProps = BaseSelectVariantProps & {
+  field?: FieldVariantProps
+  popover?: PopoverVariantProps
+}
+
 export const selectVariants = tv({
   slots: {
     // <Select />
@@ -109,6 +118,8 @@ export const selectVariants = tv({
 export type SelectClassNames = {
   // slots.base
   base: ClassValue
+  // passed to AriaPopover after popoverVariants are applied
+  popover: ClassValue
   // SelectButton slots
   button: {
     // slots.button
@@ -122,10 +133,9 @@ export type SelectClassNames = {
 
 // # Props ----------------------------------------------------------------------------------------
 
-export type SelectRenderProps = WithDefaultChildren<AriaSelectRenderProps>
+type SelectRenderProps = WithDefaultChildren<AriaSelectRenderProps>
 export type SelectProps = Omit<AriaSelectProps, "children" | "className"> & {
   variants?: SelectVariantProps
-  fieldVariants?: FieldVariantProps
   classNames?: DeepPartial<SelectClassNames & { field: FieldClassNames }>
   children: (
     renderProps: SelectRenderProps,
@@ -149,13 +159,12 @@ export type SelectButtonProps<T extends object> = Omit<
 }
 
 export type SelectPopoverProps = Omit<AriaPopoverProps, "className"> & {
-  variants?: PopoverVariantProps
-  className?: ClassValue
+  className: ClassValue
 }
 
 // # Components -----------------------------------------------------------------------------------
 
-export function Select({ variants, fieldVariants, classNames, children, ...props }: SelectProps) {
+export function Select({ variants, classNames, children, ...props }: SelectProps) {
   const {
     base: baseStyles,
     button: buttonStyles,
@@ -169,15 +178,18 @@ export function Select({ variants, fieldVariants, classNames, children, ...props
     inputBox: fieldInputBoxStyles,
     description: fieldDescriptionStyles,
     error: fieldErrorStyles,
-  } = getFieldVariants(fieldVariants)
+  } = getFieldVariants(variants?.field)
+
+  const { popover: popoverStyles } = popoverVariants(variants?.popover)
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),
     // apply field base styles only if fieldVariants are provided
-    fieldVariants && fieldBaseStyles({ className: classNames?.field?.base })
+    variants?.field && fieldBaseStyles({ className: classNames?.field?.base })
   )
 
   const childrenClassNames = {
+    popover: popoverStyles({ className: classNames?.popover }),
     button: {
       base: buttonStyles({ className: classNames?.button?.base }),
       value: buttonValueStyles({ className: classNames?.button?.value }),
@@ -220,7 +232,6 @@ export function SelectButton<T extends object>({
   )
 }
 
-export function SelectPopover({ variants, className, ...props }: SelectPopoverProps) {
-  const { popover: popoverStyles } = popoverVariants(variants)
-  return <AriaPopover {...props} className={popoverStyles({ className })} />
+export function SelectPopover({ className, ...props }: SelectPopoverProps) {
+  return <AriaPopover {...props} className={cn(className)} />
 }

@@ -54,7 +54,7 @@ __With Sections__
         classNames={classNames.section}
         header={(<p>{section.name}</p>)}
       >
-        {(item) => <ListBoxItem />}
+        {(item) => <ListBoxItem />} // Shortened for brevity. See basic usage example above.
       </ListBoxSection>
     )}
   </ListBox>

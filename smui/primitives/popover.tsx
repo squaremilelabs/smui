@@ -22,8 +22,9 @@ __Notes__
 - Does not implement an `OverlayArrow`
 
 __Composition__
-- `<Popover /> ... <AriaPopover />` (slots.popover – INTERNAL)
-- `<Popover /> ... <AriaDialog />` (slots.content – INTERNAL)
+- `<PopoverTrigger />` (unstyled trigger component)
+- `<Popover />` ... `<AriaPopover />` (slots.popover – INTERNAL)
+- `<Popover />` ... `<AriaDialog />` (slots.content – INTERNAL)
 
 __Basic (with PopoverTrigger)__
 ```tsx
@@ -53,9 +54,9 @@ __Without PopoverTrigger__
 export type PopoverVariantProps = VariantProps<typeof popoverVariants>
 export const popoverVariants = tv({
   slots: {
-    // <Popover />
+    // <AriaPopover />
     popover: [],
-    // <Dialog />
+    // <AriaDialog />
     content: [],
   },
   variants: {

@@ -8,10 +8,43 @@ import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box
 import { TextField, TextFieldInput, TextFieldTextArea } from "@/smui/primitives/text-field"
 import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field"
 import { Tab, Tabs } from "@/smui/primitives/tabs"
+import { Menu, MenuItem, MenuTrigger } from "@/smui/primitives/menu"
 
 export default function Page() {
   return (
     <div className="flex flex-col gap-8 p-4">
+      <MenuTrigger>
+        <Button>Open Menu</Button>
+        <Menu
+          key={"1"}
+          classNames={{ popover: "bg-white shadow-lg" }}
+          items={[
+            { id: "item1", name: "Item 1" },
+            { id: "item2", name: "Item 2" },
+            {
+              id: "item3",
+              name: "Item 3",
+              subItems: [
+                { id: "subitem1", name: "Sub Item 1" },
+                { id: "subitem2", name: "Sub Item 2" },
+              ],
+            },
+          ]}
+        >
+          {(item, classNames) => {
+            return (
+              <MenuItem
+                id={item.id}
+                key={item.id}
+                textValue={item.name}
+                className={classNames.item}
+              >
+                {item.name}
+              </MenuItem>
+            )
+          }}
+        </Menu>
+      </MenuTrigger>
       <Tabs
         items={[
           { id: "tab1", name: "Tab 1" },
@@ -45,7 +78,7 @@ export default function Page() {
         <h2 className="text-lg font-semibold">Checkbox</h2>
         <Checkbox>Check me</Checkbox>
         <h2 className="text-lg font-semibold">CheckboxGroup</h2>
-        <CheckboxGroup aria-label="CheckboxGroup" classNames={{ checkbox: { base: "flex " } }}>
+        <CheckboxGroup aria-label="CheckboxGroup">
           {(renderProps, classNames) => (
             <>
               <Checkbox value={"1"} classNames={classNames.checkbox}>

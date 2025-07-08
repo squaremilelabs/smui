@@ -21,9 +21,9 @@ __Notes__
 - Can implement the SMUI `field` components & variants.
 
 Composition:
-- <TextField /> (slots.base)
-- <TextFieldInput /> (slots.input)
-- <TextFieldTextArea /> (slots.textarea)
+- `<TextField />` (slots.base)
+- `<TextFieldInput />` (slots.input)
+- `<TextFieldTextArea />` (slots.textarea)
 
 __Basic (with Input)__
 ```tsx
