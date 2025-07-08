@@ -16,7 +16,6 @@ export default [
     rules: {
       "import/order": "warn",
       "no-console": "warn",
-      "react/hook-use-state": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
