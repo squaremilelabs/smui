@@ -37,9 +37,7 @@ __Composition__
 
 __Basic__
 ```tsx
-  <Select
-    variants={{} as SelectVariantProps}
-    >
+  <Select>
     {(renderProps, classNames) => (
       <>
         <SelectButton classNames={classNames.button}>
@@ -55,10 +53,7 @@ __Basic__
 
 __With Field Components__
 ```tsx
-  <Select
-    variants={{} as SelectVariantProps}
-    fieldVariants={{} as FieldVariantProps}
-    >
+  <Select>
     {(renderProps, classNames) => (
       <>
         <FieldLabel className={classNames.field.label}>
@@ -85,8 +80,7 @@ const SelectButtonIcon = ChevronsUpDownIcon
 
 // # Variants -------------------------------------------------------------------------------------
 
-export type BaseSelectVariantProps = VariantProps<typeof selectVariants>
-
+type BaseSelectVariantProps = VariantProps<typeof selectVariants>
 export type SelectVariantProps = BaseSelectVariantProps & {
   field?: FieldVariantProps
   popover?: PopoverVariantProps

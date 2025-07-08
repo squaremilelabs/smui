@@ -45,10 +45,7 @@ __With TextArea__
 
 __With Field Components__
 ```tsx
-  <TextField
-    variants={{} as TextFieldVariantProps}
-    fieldVariants={{} as FieldVariantProps}
-    >
+  <TextField>
     {(renderProps, classNames) => (
       <>
         <FieldLabel className={classNames.field.label}>
@@ -63,7 +60,10 @@ __With Field Components__
 
 // # Variants -------------------------------------------------------------------------------------
 
-export type TextFieldVariantProps = VariantProps<typeof textFieldVariants>
+type BaseTextFieldVariantProps = VariantProps<typeof textFieldVariants>
+export type TextFieldVariantProps = BaseTextFieldVariantProps & {
+  field?: FieldVariantProps
+}
 export const textFieldVariants = tv({
   slots: {
     // <TextField />
@@ -119,13 +119,7 @@ export type TextFieldTextAreaProps = Omit<AriaTextAreaProps, "className"> & {
 
 // # Components -----------------------------------------------------------------------------------
 
-export function TextField({
-  variants,
-  fieldVariants,
-  classNames,
-  children,
-  ...props
-}: TextFieldProps) {
+export function TextField({ variants, classNames, children, ...props }: TextFieldProps) {
   const {
     base: baseStyles,
     input: inputStyles,
@@ -138,11 +132,11 @@ export function TextField({
     inputBox: fieldInputBoxStyles,
     description: fieldDescriptionStyles,
     error: fieldErrorStyles,
-  } = getFieldVariants(fieldVariants)
+  } = getFieldVariants(variants?.field)
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),
-    fieldVariants && fieldBaseStyles({ className: classNames?.field?.base })
+    variants?.field && fieldBaseStyles({ className: classNames?.field?.base })
   )
 
   const childrenClassNames = {
