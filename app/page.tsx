@@ -1,22 +1,14 @@
 "use client"
 
-import { Button, ButtonGroup } from "@/smui/primitives/button/components"
-import { Checkbox, CheckboxGroup } from "@/smui/primitives/checkbox/components"
-import {
-  Disclosure,
-  DisclosurePanel,
-  DisclsoureHeading,
-} from "@/smui/primitives/disclosure/components"
-import { GridList, GridListItem } from "@/smui/primitives/grid-list/components"
-import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box/components"
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldTextArea,
-} from "@/smui/primitives/text-field/components"
-import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field/components"
-import { Tab, Tabs } from "@/smui/primitives/tabs/component"
-import { Menu, MenuItem, MenuTrigger } from "@/smui/primitives/menu/components"
+import { Button, ButtonGroup } from "@/smui/button/components"
+import { Checkbox, CheckboxGroup } from "@/smui/checkbox/components"
+import { Disclosure, DisclosurePanel, DisclsoureHeading } from "@/smui/disclosure/components"
+import { GridList, GridListItem } from "@/smui/grid-list/components"
+import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/list-box/components"
+import { TextField, TextFieldInput, TextFieldTextArea } from "@/smui/text-field/components"
+import { FieldDescription, FieldError, FieldLabel } from "@/smui/field/components"
+import { Tab, Tabs } from "@/smui/tabs/component"
+import { Menu, MenuItem, MenuTrigger } from "@/smui/menu/components"
 
 export default function Page() {
   return (
