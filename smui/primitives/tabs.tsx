@@ -75,7 +75,6 @@ export type TabsClassNames = {
 
 // # Props ----------------------------------------------------------------------------------------
 
-export type TabsRenderProps = WithDefaultChildren<object>
 export type TabsProps<T extends object> = Omit<AriaTabsProps, "children" | "className"> & {
   variants?: TabsVariantProps
   classNames?: DeepPartial<TabsClassNames>
