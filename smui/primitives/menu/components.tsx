@@ -17,7 +17,7 @@ import {
   Key,
 } from "react-aria-components"
 import { cn, DeepPartial, WithDefaultChildren, ClassValue } from "../../utils"
-import { popoverVariants } from "../popover"
+import { popoverVariants } from "../popover/variants"
 import { MenuVariantProps, MenuClassNames, menuVariants } from "./variants"
 
 export type MenuTriggerProps = AriaMenuTriggerProps

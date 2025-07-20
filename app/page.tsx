@@ -2,12 +2,20 @@
 
 import { Button, ButtonGroup } from "@/smui/primitives/button/components"
 import { Checkbox, CheckboxGroup } from "@/smui/primitives/checkbox/components"
-import { Disclosure, DisclosurePanel, DisclsoureHeading } from "@/smui/primitives/disclosure"
+import {
+  Disclosure,
+  DisclosurePanel,
+  DisclsoureHeading,
+} from "@/smui/primitives/disclosure/components"
 import { GridList, GridListItem } from "@/smui/primitives/grid-list/components"
 import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box/components"
-import { TextField, TextFieldInput, TextFieldTextArea } from "@/smui/primitives/text-field"
+import {
+  TextField,
+  TextFieldInput,
+  TextFieldTextArea,
+} from "@/smui/primitives/text-field/components"
 import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field/components"
-import { Tab, Tabs } from "@/smui/primitives/tabs"
+import { Tab, Tabs } from "@/smui/primitives/tabs/component"
 import { Menu, MenuItem, MenuTrigger } from "@/smui/primitives/menu/components"
 
 export default function Page() {

@@ -10,91 +10,9 @@ import {
   TextArea as AriaTextArea,
   TextAreaProps as AriaTextAreaProps,
 } from "react-aria-components"
-import { cn, tv, VariantProps, ClassValue, DeepPartial, WithDefaultChildren } from "../utils"
-import { FieldClassNames, FieldVariantProps, fieldVariants } from "./field/variants"
-
-/** # Usage ---------------------------------------------------------------------------------------
-
-https://react-spectrum.adobe.com/react-aria/TextField.html
-
-__Notes__
-- Can implement the SMUI `field` components & variants.
-
-Composition:
-- `<TextField />` (slots.base)
-- `<TextFieldInput />` (slots.input)
-- `<TextFieldTextArea />` (slots.textarea)
-
-__Basic (with Input)__
-```tsx
-  <TextField>
-    {(renderProps, classNames) => (
-      <TextFieldInput classNames={classNames.input} />
-    )}
-  </Select>
-```
-
-__With TextArea__
-```tsx
-  <TextField>
-    {(renderProps, classNames) => (
-      <TextFieldTextArea classNames={classNames.textarea} />
-    )}
-  </Select>
-```
-
-__With Field Components__
-```tsx
-  <TextField>
-    {(renderProps, classNames) => (
-      <>
-        <FieldLabel className={classNames.field.label}>
-        <TextFieldInput classNames={cn(classNames.input, classNames.field.inputBox)} />
-        <FieldDescription className={classNames.field.description}>
-        <FieldError className={classNames.field.error}>
-      </>
-    )}
-  </TextField>
-```
-*/
-
-// # Variants -------------------------------------------------------------------------------------
-
-type BaseTextFieldVariantProps = VariantProps<typeof textFieldVariants>
-export type TextFieldVariantProps = BaseTextFieldVariantProps & {
-  field?: FieldVariantProps
-}
-export const textFieldVariants = tv({
-  slots: {
-    // <TextField />
-    base: [],
-    // <TextFieldInput />
-    input: [],
-    // <TextFieldTextArea />
-    textarea: [],
-  },
-  variants: {
-    variant: {
-      default: {},
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
-
-// # ClassNames -----------------------------------------------------------------------------------
-
-export type TextFieldClassNames = {
-  // slots.base
-  base: ClassValue
-  // slots.input
-  input: ClassValue
-  // slots.textarea
-  textarea: ClassValue
-}
-
-// # Props ----------------------------------------------------------------------------------------
+import { cn, ClassValue, DeepPartial, WithDefaultChildren } from "../../utils"
+import { FieldClassNames, fieldVariants } from "../field/variants"
+import { TextFieldVariantProps, TextFieldClassNames, textFieldVariants } from "./variants"
 
 export type TextFieldRenderProps = WithDefaultChildren<AriaTextFieldRenderProps>
 export type TextFieldProps = Omit<AriaTextFieldProps, "children" | "className"> & {
@@ -115,8 +33,6 @@ export type TextFieldInputProps = Omit<AriaInputProps, "className"> & {
 export type TextFieldTextAreaProps = Omit<AriaTextAreaProps, "className"> & {
   className: ClassValue
 }
-
-// # Components -----------------------------------------------------------------------------------
 
 export function TextField({ variants, classNames, children, ...props }: TextFieldProps) {
   const {

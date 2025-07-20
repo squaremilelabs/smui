@@ -9,45 +9,8 @@ import {
   ToggleButtonGroupProps as AriaToggleButtonGroupProps,
   ToggleButtonGroupRenderProps as AriaToggleButtonGroupRenderProps,
 } from "react-aria-components"
-import { WithDefaultChildren, ClassValue } from "../utils"
-import { ButtonGroupClassNames, buttonVariants, ButtonVariantProps } from "./button/variants"
-
-/** # Usage ---------------------------------------------------------------------------------------
-
-https://react-spectrum.adobe.com/react-aria/ToggleButton.html
-https://react-spectrum.adobe.com/react-aria/ToggleButtonGroup.html
-
-__ToggleButton__
-```tsx
-  <ToggleButton>
-    {children || (renderProps) => children}
-  </ToggleButton>
-```
-
-__ToggleButtonGroup__
-```tsx
-  <ToggleButtonGroup>
-    {(renderProps, classNames) => (
-      <>
-        <ToggleButton className={classNames.button} />
-        <ToggleButton className={classNames.button} />
-        <ToggleButton className={classNames.button} />
-      </>
-    )}
-  </ToggleButtonGroup>
-```
-
-*/
-
-// # Variants -------------------------------------------------------------------------------------
-
-// Applies `Button` variants
-
-// # ClassNames -----------------------------------------------------------------------------------
-
-// Applies `Button` class names
-
-// # Props ----------------------------------------------------------------------------------------
+import { WithDefaultChildren, ClassValue } from "../../utils"
+import { ButtonGroupClassNames, buttonVariants, ButtonVariantProps } from "../button/variants"
 
 export type ToggleButtonRenderProps = WithDefaultChildren<AriaToggleButtonRenderProps>
 export type ToggleButtonProps = Omit<AriaToggleButtonProps, "className"> & {

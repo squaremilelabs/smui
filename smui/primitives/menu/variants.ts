@@ -1,5 +1,5 @@
 import { ClassValue, tv, VariantProps } from "../../utils"
-import { PopoverVariantProps } from "../popover"
+import { PopoverVariantProps } from "../popover/variants"
 
 // # Variants -------------------------------------------------------------------------------------
 
