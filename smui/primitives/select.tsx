@@ -15,7 +15,11 @@ import {
 } from "react-aria-components"
 import { ChevronsUpDownIcon } from "lucide-react"
 import { cn, DeepPartial, ClassValue, tv, VariantProps, WithDefaultChildren } from "../utils"
-import { FieldClassNames, FieldVariantProps, fieldVariants as getFieldVariants } from "./field"
+import {
+  FieldClassNames,
+  FieldVariantProps,
+  fieldVariants as getFieldVariants,
+} from "./field/variants"
 import { PopoverVariantProps, popoverVariants } from "./popover"
 
 /** # Usage ---------------------------------------------------------------------------------------

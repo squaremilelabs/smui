@@ -10,7 +10,7 @@ import {
   ToggleButtonGroupRenderProps as AriaToggleButtonGroupRenderProps,
 } from "react-aria-components"
 import { WithDefaultChildren, ClassValue } from "../utils"
-import { ButtonGroupClassNames, buttonVariants, ButtonVariantProps } from "./button"
+import { ButtonGroupClassNames, buttonVariants, ButtonVariantProps } from "./button/variants"
 
 /** # Usage ---------------------------------------------------------------------------------------
 

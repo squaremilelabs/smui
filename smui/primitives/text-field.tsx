@@ -11,7 +11,7 @@ import {
   TextAreaProps as AriaTextAreaProps,
 } from "react-aria-components"
 import { cn, tv, VariantProps, ClassValue, DeepPartial, WithDefaultChildren } from "../utils"
-import { FieldClassNames, FieldVariantProps, fieldVariants as getFieldVariants } from "./field"
+import { FieldClassNames, FieldVariantProps, fieldVariants } from "./field/variants"
 
 /** # Usage ---------------------------------------------------------------------------------------
 
@@ -99,7 +99,6 @@ export type TextFieldClassNames = {
 export type TextFieldRenderProps = WithDefaultChildren<AriaTextFieldRenderProps>
 export type TextFieldProps = Omit<AriaTextFieldProps, "children" | "className"> & {
   variants?: TextFieldVariantProps
-  fieldVariants?: FieldVariantProps
   classNames?: DeepPartial<TextFieldClassNames & { field: FieldClassNames }>
   children: (
     renderProps: TextFieldRenderProps,
@@ -132,7 +131,7 @@ export function TextField({ variants, classNames, children, ...props }: TextFiel
     inputBox: fieldInputBoxStyles,
     description: fieldDescriptionStyles,
     error: fieldErrorStyles,
-  } = getFieldVariants(variants?.field)
+  } = fieldVariants(variants?.field)
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),

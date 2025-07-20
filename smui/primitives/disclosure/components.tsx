@@ -9,61 +9,8 @@ import {
   Heading as AriaHeading,
   HeadingProps as AriaHeadingProps,
 } from "react-aria-components"
-import { tv, cn, VariantProps, ClassValue, WithDefaultChildren } from "../utils"
-
-/** # Usage ---------------------------------------------------------------------------------------
-
-https://react-spectrum.adobe.com/react-aria/Disclosure.html
-
-__Notes__
-- Same as RAC, is expecting a `Button` with `slot="trigger"` to be provided in `DisclosureHeading`
-
-__Composition__
-- `<Disclosure />` (slots.base)
-- `<DisclosureHeading />` (slots.heading)
-- `<DisclosurePanel />` (slots.panel)
-
-```tsx
-  <Disclosure>
-    {(renderProps, classNames) => (
-      <>
-        <DisclosureHeading className={classNames.heading}>
-          <Button slot="trigger" />
-        </DisclosureHeading>
-        <DisclosurePanel className={classNames.panel}>
-          {children || (renderProps) => children}
-        </DisclosurePanel>
-      </>
-    )}
-  </Disclosure>
-```
-
-*/
-
-// # Variants -------------------------------------------------------------------------------------
-
-export type DisclosureVariantProps = VariantProps<typeof disclosureVariants>
-export const disclosureVariants = tv({
-  slots: {
-    // <Disclosure>
-    base: [],
-    // <DisclosureHeading>
-    heading: [],
-    // <DisclosurePanel>
-    panel: [],
-  },
-})
-
-// # ClassNames -----------------------------------------------------------------------------------
-
-export type DisclosureClassNames = {
-  // slots.base
-  base: ClassValue
-  // slots.heading
-  heading: ClassValue
-  // slots.panel
-  panel: ClassValue
-}
+import { cn, ClassValue, WithDefaultChildren } from "../../utils"
+import { disclosureVariants, DisclosureVariantProps, DisclosureClassNames } from "./variants"
 
 // # Props ----------------------------------------------------------------------------------------
 

@@ -9,127 +9,19 @@ import {
   CheckboxGroupRenderProps as AriaCheckboxGroupRenderProps,
 } from "react-aria-components"
 import { SquareCheckIcon, SquareIcon, SquareMinusIcon } from "lucide-react"
+import { cn, DeepPartial, renderChildren, WithDefaultChildren } from "../../utils"
+import { FieldClassNames, fieldVariants } from "../field/variants"
 import {
-  cn,
-  DeepPartial,
-  renderChildren,
-  WithDefaultChildren,
-  ClassValue,
-  tv,
-  VariantProps,
-} from "../utils"
-import { FieldClassNames, FieldVariantProps, fieldVariants as getFieldVariants } from "./field"
+  CheckboxVariantProps,
+  CheckboxClassNames,
+  CheckboxGroupClassNames,
+  checkboxVariants,
+} from "./variants"
 
-/** # Usage ---------------------------------------------------------------------------------------
-
-https://react-spectrum.adobe.com/react-aria/Checkbox.html
-https://react-spectrum.adobe.com/react-aria/CheckboxGroup.html
-
-__Notes__
-- Checkbox children are wrapped in a `span` element to apply the label styles.
-- CheckboxGroup can implement the SMUI `field` components & variants.
-
-__Composition__
-- `<Checkbox />` (slots.checkboxBase)
-- `<Checkbox />` ... `<Icon />` (slots.checkboxIcon - INTERNAL)
-- `<Checkbox />` ... `<span />` (slots.checkboxLabel - INTERNAL)
-- `<CheckboxGroup />` (slots.group)
-
-__Checkbox__
-```tsx
-  // Icon only
-  <Checkbox />
-
-  // With label (as children)
-  <Checkbox>
-    {children || (renderProps) => children}
-  </Checkbox>
-```
-
-__CheckboxGroup__
-```tsx
-  <CheckboxGroup>
-    {(renderProps, classNames) => (
-      <>
-        <Checkbox classNames={classNames.checkbox} />
-        <Checkbox classNames={classNames.checkbox} />
-        <Checkbox classNames={classNames.checkbox} />
-      </>
-    )}
-  </CheckboxGroup>
-```
-
-__CheckboxGroup with Field Components__
-```tsx
-  <CheckboxGroup 
-    variants={{} as CheckboxVariantProps}
-    fieldVariants={{} as FieldVariantProps}
-    >
-    {(renderProps, classNames) => (
-      <>
-        <FieldLabel className={classNames.field.label}>
-        <Checkbox classNames={classNames.checkbox} />
-        <Checkbox classNames={classNames.checkbox} />
-        <Checkbox classNames={classNames.checkbox} />
-        <FieldDescription className={classNames.field.description}>
-        <FieldError className={classNames.field.error}>
-      </>
-    )}
-  </CheckboxGroup>
-```
-
-*/
-
-// # Icons ----------------------------------------------------------------------------------------
 // Replace if not using lucide-react
-
 const IndeterminateIcon = SquareMinusIcon
 const CheckedIcon = SquareCheckIcon
 const UncheckedIcon = SquareIcon
-
-// # Variants -------------------------------------------------------------------------------------
-
-export type CheckboxVariantProps = VariantProps<typeof checkboxVariants>
-export const checkboxVariants = tv({
-  slots: {
-    // <CheckboxGroup />
-    group: [],
-    // <Checkbox />
-    checkboxBase: [],
-    // <Checkbox /> ... <Icon />
-    checkboxIcon: [],
-    // <Checkbox /> ... <span />
-    checkboxLabel: [],
-  },
-  variants: {
-    variant: {
-      default: {},
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
-
-// # ClassNames -----------------------------------------------------------------------------------
-
-export type CheckboxClassNames = {
-  // slots.checkboxBase
-  base: ClassValue
-  // slots.checkboxIcon
-  icon: ClassValue
-  // slots.checkboxLabel
-  label: ClassValue
-}
-
-export type CheckboxGroupClassNames = {
-  // slots.group
-  base: ClassValue
-  // Checkbox slots
-  checkbox: CheckboxClassNames
-}
-
-// # Props ----------------------------------------------------------------------------------------
 
 export type CheckboxRenderProps = WithDefaultChildren<AriaCheckboxRenderProps>
 export type CheckboxProps = Omit<AriaCheckboxProps, "className"> & {
@@ -140,7 +32,6 @@ export type CheckboxProps = Omit<AriaCheckboxProps, "className"> & {
 export type CheckboxGroupRenderProps = WithDefaultChildren<AriaCheckboxGroupRenderProps>
 export type CheckboxGroupProps = Omit<AriaCheckboxGroupProps, "children" | "className"> & {
   variants?: CheckboxVariantProps
-  fieldVariants?: FieldVariantProps
   classNames?: DeepPartial<CheckboxGroupClassNames & { field: FieldClassNames }>
   children: (
     renderProps: CheckboxGroupRenderProps,
@@ -176,13 +67,7 @@ export function Checkbox({ variants, classNames, children, ...props }: CheckboxP
   )
 }
 
-export function CheckboxGroup({
-  variants,
-  fieldVariants,
-  classNames,
-  children,
-  ...props
-}: CheckboxGroupProps) {
+export function CheckboxGroup({ variants, classNames, children, ...props }: CheckboxGroupProps) {
   const {
     group: baseStyles,
     checkboxBase: checkboxBaseStyles,
@@ -196,12 +81,12 @@ export function CheckboxGroup({
     inputBox: fieldInputBoxStyles,
     description: fieldDescriptionStyles,
     error: fieldErrorStyles,
-  } = getFieldVariants(fieldVariants)
+  } = fieldVariants(variants?.field)
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),
     // apply field base styles only if fieldVariants are provided
-    fieldVariants && fieldBaseStyles({ className: classNames?.field?.base })
+    variants?.field && fieldBaseStyles({ className: classNames?.field?.base })
   )
 
   const childrenClassNames = {

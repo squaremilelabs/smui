@@ -1,14 +1,14 @@
 "use client"
 
-import { Button, ButtonGroup } from "@/smui/primitives/button"
-import { Checkbox, CheckboxGroup } from "@/smui/primitives/checkbox"
+import { Button, ButtonGroup } from "@/smui/primitives/button/components"
+import { Checkbox, CheckboxGroup } from "@/smui/primitives/checkbox/components"
 import { Disclosure, DisclosurePanel, DisclsoureHeading } from "@/smui/primitives/disclosure"
-import { GridList, GridListItem } from "@/smui/primitives/grid-list"
-import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box"
+import { GridList, GridListItem } from "@/smui/primitives/grid-list/components"
+import { ListBox, ListBoxItem, ListBoxSection } from "@/smui/primitives/list-box/components"
 import { TextField, TextFieldInput, TextFieldTextArea } from "@/smui/primitives/text-field"
-import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field"
+import { FieldDescription, FieldError, FieldLabel } from "@/smui/primitives/field/components"
 import { Tab, Tabs } from "@/smui/primitives/tabs"
-import { Menu, MenuItem, MenuTrigger } from "@/smui/primitives/menu"
+import { Menu, MenuItem, MenuTrigger } from "@/smui/primitives/menu/components"
 
 export default function Page() {
   return (
@@ -94,7 +94,7 @@ export default function Page() {
           )}
         </CheckboxGroup>
         <h2 className="text-lg font-semibold">CheckboxGroup with Field Components</h2>
-        <CheckboxGroup fieldVariants={{}}>
+        <CheckboxGroup>
           {(renderProps, classNames) => (
             <>
               <FieldLabel className={classNames.field.label}>Choose options</FieldLabel>
@@ -212,7 +212,7 @@ export default function Page() {
           {(_, classNames) => <TextFieldTextArea className={classNames.textarea} />}
         </TextField>
         <h2 className="text-lg font-semibold">With FieldComponents</h2>
-        <TextField fieldVariants={{}}>
+        <TextField>
           {(_, classNames) => (
             <>
               <FieldLabel className={classNames.field.label}>Label</FieldLabel>
