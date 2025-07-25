@@ -134,7 +134,7 @@ Theoretically, you would have captured all relevant styling at the component-lev
 
 See below example for how styles then get passed down with a `classNames` argument provided to a children function.
 
-Beyond the above, each component exposes the corresponding __React Aria__ component props. Refer to the RAC docs for complete usage. As mentioned in __Motivations__ above, some components have slightly altered APIs for consistent DX. Refer to the __Usage__ section at the top of each file for key modifications.
+Beyond the above, each component exposes the corresponding __React Aria__ component props. Refer to the RAC docs for complete usage. As mentioned in __Motivations__ above, some components have slightly altered APIs for consistent DX. Refer to `docs.md` included with each component for full usage.
 
 ```tsx
 import { ListBox, ListBoxSection, ListBoxItem } from "{PATH_TO_SMUI_COMPONENTS}/list-box/component"
