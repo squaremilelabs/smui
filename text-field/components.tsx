@@ -7,9 +7,10 @@ import {
   TextFieldRenderProps as AriaTextFieldRenderProps,
   Input as AriaInput,
   InputProps as AriaInputProps,
-  TextArea as AriaTextArea,
-  TextAreaProps as AriaTextAreaProps,
+  useContextProps,
+  TextAreaContext,
 } from "react-aria-components"
+import TextareaAutosize, { TextareaAutosizeProps } from "react-textarea-autosize"
 import { cn, ClassValue, DeepPartial, WithDefaultChildren } from "../utils"
 import { FieldClassNames, fieldVariants } from "../field/variants"
 import { TextFieldVariantProps, TextFieldClassNames, textFieldVariants } from "./variants"
@@ -30,7 +31,7 @@ export type TextFieldInputProps = Omit<AriaInputProps, "className"> & {
   className: ClassValue
 }
 
-export type TextFieldTextAreaProps = Omit<AriaTextAreaProps, "className"> & {
+export type TextFieldTextAreaProps = Omit<TextareaAutosizeProps, "className"> & {
   className: ClassValue
 }
 
@@ -76,6 +77,14 @@ export function TextFieldInput({ className, ...props }: TextFieldInputProps) {
   return <AriaInput {...props} className={cn(className)} />
 }
 
+const ForwardedTextareaAutosize = React.forwardRef<HTMLTextAreaElement, TextFieldTextAreaProps>(
+  (props, ref) => {
+    const [innerProps, innerRef] = useContextProps(props, ref, TextAreaContext)
+    return <TextareaAutosize {...innerProps} ref={innerRef} className={cn(innerProps.className)} />
+  }
+)
+ForwardedTextareaAutosize.displayName = "ForwardedTextareaAutosize"
+
 export function TextFieldTextArea({ className, ...props }: TextFieldTextAreaProps) {
-  return <AriaTextArea {...props} className={cn(className)} />
+  return <ForwardedTextareaAutosize {...props} className={cn(className)} />
 }
