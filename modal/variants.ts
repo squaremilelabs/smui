@@ -6,11 +6,15 @@ export type ModalVariantProps = VariantProps<typeof modalVariants>
 export const modalVariants = tv({
   slots: {
     // <ModalOverlay />
-    overlay: [],
+    overlay: [
+      "fixed inset-0 h-dvh w-dvw z-60",
+      "flex flex-col items-center pt-[10dvh]",
+      "bg-canvas-1/30 backdrop-blur-xs",
+    ],
     // <Modal />
-    modal: [],
+    modal: ["bg-canvas-0 rounded-sm border-2"],
     // <Dialog />
-    content: [],
+    content: ["flex flex-col"],
   },
   variants: {
     variant: {

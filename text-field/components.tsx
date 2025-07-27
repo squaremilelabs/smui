@@ -16,7 +16,9 @@ import { FieldClassNames, fieldVariants } from "../field/variants"
 import { TextFieldVariantProps, TextFieldClassNames, textFieldVariants } from "./variants"
 
 export type TextFieldRenderProps = WithDefaultChildren<AriaTextFieldRenderProps>
+
 export type TextFieldProps = Omit<AriaTextFieldProps, "children" | "className"> & {
+  forwardRef?: React.Ref<HTMLDivElement>
   variants?: TextFieldVariantProps
   classNames?: DeepPartial<TextFieldClassNames & { field: FieldClassNames }>
   children: (
@@ -28,14 +30,22 @@ export type TextFieldProps = Omit<AriaTextFieldProps, "children" | "className"> 
 }
 
 export type TextFieldInputProps = Omit<AriaInputProps, "className"> & {
+  forwardRef?: React.Ref<HTMLInputElement>
   className: ClassValue
 }
 
 export type TextFieldTextAreaProps = Omit<TextareaAutosizeProps, "className"> & {
+  forwardRef?: React.Ref<HTMLTextAreaElement>
   className: ClassValue
 }
 
-export function TextField({ variants, classNames, children, ...props }: TextFieldProps) {
+export function TextField({
+  variants,
+  classNames,
+  children,
+  forwardRef,
+  ...props
+}: TextFieldProps) {
   const {
     base: baseStyles,
     input: inputStyles,
@@ -67,24 +77,37 @@ export function TextField({ variants, classNames, children, ...props }: TextFiel
   }
 
   return (
-    <AriaTextField {...props} className={baseClassName}>
+    <AriaTextField {...props} ref={forwardRef} className={baseClassName}>
       {(renderProps) => children(renderProps, childrenClassNames)}
     </AriaTextField>
   )
 }
 
-export function TextFieldInput({ className, ...props }: TextFieldInputProps) {
-  return <AriaInput {...props} className={cn(className)} />
+export function TextFieldInput({ className, forwardRef, ...props }: TextFieldInputProps) {
+  return <AriaInput {...props} ref={forwardRef} className={cn(className)} />
 }
 
 const ForwardedTextareaAutosize = React.forwardRef<HTMLTextAreaElement, TextFieldTextAreaProps>(
   (props, ref) => {
     const [innerProps, innerRef] = useContextProps(props, ref, TextAreaContext)
-    return <TextareaAutosize {...innerProps} ref={innerRef} className={cn(innerProps.className)} />
+    const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)
+      if (innerProps.onFocus) {
+        innerProps.onFocus(e)
+      }
+    }
+    return (
+      <TextareaAutosize
+        {...innerProps}
+        onFocus={handleFocus}
+        ref={innerRef}
+        className={cn(innerProps.className)}
+      />
+    )
   }
 )
 ForwardedTextareaAutosize.displayName = "ForwardedTextareaAutosize"
 
-export function TextFieldTextArea({ className, ...props }: TextFieldTextAreaProps) {
-  return <ForwardedTextareaAutosize {...props} className={cn(className)} />
+export function TextFieldTextArea({ className, forwardRef, ...props }: TextFieldTextAreaProps) {
+  return <ForwardedTextareaAutosize {...props} ref={forwardRef} className={cn(className)} />
 }
