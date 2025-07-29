@@ -16,15 +16,16 @@ export const listBoxVariants = tv({
     variant: {
       default: {},
       flat: {
-        base: ["flex flex-col gap-2 p-2"],
+        base: ["flex flex-col gap-2"],
         item: [
           "group/list-box-item",
           "flex items-center gap-4 px-8 py-6",
           "cursor-pointer",
-          "hover:bg-canvas-1",
+          "rounded-sm",
+          "hover:bg-neutral-muted-bg/50",
           "data-drop-target:outline-2",
-          "data-selected:!bg-canvas-1",
-          "data-selected:font-semibold",
+          "data-selected:bg-neutral-muted-bg",
+          "text-neutral-text data-selected:text-base-text",
         ],
       },
     },
