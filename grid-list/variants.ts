@@ -4,9 +4,9 @@ export type GridListVariantProps = VariantProps<typeof gridListVariants>
 export const gridListVariants = tv({
   slots: {
     // <GridList />
-    base: [],
+    base: ["flex flex-col"],
     // <GridListItem />
-    item: [],
+    item: ["flex"],
   },
   variants: {
     variant: {

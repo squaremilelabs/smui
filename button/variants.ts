@@ -7,7 +7,11 @@ export const buttonVariants = tv({
     // <ButtonGroup />
     group: [],
     // <Button />
-    button: [],
+    button: [
+      "not-disabled:cursor-pointer",
+      "disabled:cursor-not-allowed",
+      "not-disabled:hover:opacity-70",
+    ],
   },
   variants: {
     variant: {

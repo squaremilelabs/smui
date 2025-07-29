@@ -62,7 +62,8 @@ export function TextField({
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),
-    variants?.field && fieldBaseStyles({ className: classNames?.field?.base })
+    (variants?.field || classNames?.field) &&
+      fieldBaseStyles({ className: classNames?.field?.base })
   )
 
   const childrenClassNames = {
