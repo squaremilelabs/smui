@@ -5,7 +5,7 @@ export type ButtonVariantProps = VariantProps<typeof buttonVariants>
 export const buttonVariants = tv({
   slots: {
     // <ButtonGroup />
-    group: [],
+    group: ["flex items-center"],
     // <Button />
     button: ["not-disabled:cursor-pointer"],
   },

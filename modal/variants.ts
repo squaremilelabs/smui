@@ -20,9 +20,17 @@ export const modalVariants = tv({
     variant: {
       default: {},
     },
+    size: {
+      xs: { content: ["w-xs"] },
+      sm: { content: ["w-sm"] },
+      md: { content: ["w-md"] },
+      lg: { content: ["w-lg"] },
+      xl: { content: ["w-xl"] },
+    },
   },
   defaultVariants: {
     variant: "default",
+    size: "sm",
   },
 })
 

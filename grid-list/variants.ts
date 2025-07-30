@@ -10,7 +10,18 @@ export const gridListVariants = tv({
   },
   variants: {
     variant: {
-      default: {},
+      "default": {},
+      "task-list": {
+        base: ["flex flex-col gap-4"],
+        item: [
+          "group/grid-list-item",
+          "flex items-center",
+          "bg-base-bg rounded-sm",
+          "gap-8 px-8 py-6 !outline-0",
+          "focus-visible:border-l-4 focus-visible:border-l-neutral-border",
+          "data-selected:border-l-4 data-selected:border-l-base-outline",
+        ],
+      },
     },
   },
   defaultVariants: {

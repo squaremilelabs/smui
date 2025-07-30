@@ -12,9 +12,9 @@ export const checkboxVariants = tv({
     // <CheckboxGroup />
     group: [],
     // <Checkbox />
-    checkboxBase: [],
+    checkboxBase: ["size-20 flex items-center justify-center cursor-pointer"],
     // <Checkbox /> ... <Icon />
-    checkboxIcon: [],
+    checkboxIcon: ["size-16"],
     // <Checkbox /> ... <span />
     checkboxLabel: [],
   },
