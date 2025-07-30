@@ -16,6 +16,7 @@ export type TabsProps<T extends object> = Omit<AriaTabsProps, "children" | "clas
   variants?: TabsVariantProps
   classNames?: DeepPartial<TabsClassNames>
   items: Array<T>
+  dependencies?: readonly unknown[]
   children: (item: T, classNames: Omit<TabsClassNames, "base" | "tabList">) => React.ReactNode
 }
 
@@ -33,6 +34,7 @@ export function Tabs<T extends object>({
   classNames,
   children,
   items,
+  dependencies,
   ...props
 }: TabsProps<T>) {
   const { base: baseStyles, tabList: tabListStyles, tab: tabStyles } = tabsVariants(variants)
@@ -46,7 +48,7 @@ export function Tabs<T extends object>({
 
   return (
     <AriaTabs {...props} className={baseClassName}>
-      <AriaTabList className={tabListClassName} items={items}>
+      <AriaTabList className={tabListClassName} items={items} dependencies={dependencies}>
         {(item) => children(item, childrenClassNames)}
       </AriaTabList>
     </AriaTabs>
