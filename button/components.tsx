@@ -14,6 +14,7 @@ import { buttonVariants, ButtonVariantProps, ButtonGroupClassNames } from "./var
 
 export type ButtonRenderProps = AriaButtonRenderProps
 export type ButtonProps = Omit<AriaButtonProps, "className"> & {
+  forwardRef?: React.Ref<HTMLButtonElement>
   variants?: ButtonVariantProps
   className?: ClassValue
 }
@@ -28,9 +29,9 @@ export type ButtonGroupProps = Omit<AriaGroupProps, "className" | "children"> & 
   ) => React.ReactNode
 }
 
-export function Button({ variants, className, ...props }: ButtonProps) {
+export function Button({ variants, className, forwardRef, ...props }: ButtonProps) {
   const { button: buttonStyles } = buttonVariants(variants)
-  return <AriaButton {...props} className={buttonStyles({ className })} />
+  return <AriaButton {...props} ref={forwardRef} className={buttonStyles({ className })} />
 }
 
 export function ButtonGroup({ variants, classNames, children, ...props }: ButtonGroupProps) {

@@ -7,20 +7,25 @@ export type CheckboxVariantProps = BaseCheckboxVariantProps & {
   field?: FieldVariantProps
 }
 
+// TODO: Modified just for RecurringTaskModal
 export const checkboxVariants = tv({
   slots: {
     // <CheckboxGroup />
     group: [],
     // <Checkbox />
-    checkboxBase: ["size-20 flex items-center justify-center cursor-pointer"],
+    checkboxBase: [],
     // <Checkbox /> ... <Icon />
-    checkboxIcon: ["size-16"],
+    checkboxIcon: [],
     // <Checkbox /> ... <span />
     checkboxLabel: [],
   },
   variants: {
     variant: {
-      default: {},
+      default: {
+        checkboxBase: ["size-20 flex items-center justify-center cursor-pointer"],
+        checkboxIcon: ["size-16"],
+      },
+      reset: {},
     },
   },
   defaultVariants: {
