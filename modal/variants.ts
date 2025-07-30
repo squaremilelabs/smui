@@ -9,12 +9,12 @@ export const modalVariants = tv({
     overlay: [
       "fixed inset-0 h-dvh w-dvw z-60",
       "flex flex-col items-center pt-[10dvh]",
-      "bg-canvas-1/30 backdrop-blur-xs",
+      "bg-neutral-muted-bg/30 backdrop-blur-xs",
     ],
     // <Modal />
-    modal: ["bg-canvas-0 rounded-sm border-2"],
+    modal: [""],
     // <Dialog />
-    content: ["flex flex-col"],
+    content: ["flex flex-col max-w-[90dvw] max-h-[80dvh] overflow-auto"],
   },
   variants: {
     variant: {

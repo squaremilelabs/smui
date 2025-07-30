@@ -10,7 +10,7 @@ export const fieldVariants = tv({
     // To be appended to the field input component (e.g., <SelectButton />, <TextFieldInput />, etc.)
     inputBox: [],
     // <FieldLabel />
-    label: [],
+    label: ["text-sm text-neutral-muted-text uppercase", "tracking-wider font-semibold"],
     // <FieldDescription />
     description: [],
     // <FieldError />

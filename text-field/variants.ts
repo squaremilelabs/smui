@@ -12,7 +12,7 @@ export const textFieldVariants = tv({
     // <TextFieldInput />
     input: [],
     // <TextFieldTextArea />
-    textarea: [],
+    textarea: ["resize-none"],
   },
   variants: {
     variant: {

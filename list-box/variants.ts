@@ -25,7 +25,6 @@ export const listBoxVariants = tv({
           "hover:bg-neutral-muted-bg/50",
           "data-drop-target:outline-2",
           "data-selected:bg-neutral-muted-bg",
-          "text-neutral-text data-selected:text-base-text",
         ],
       },
     },

@@ -7,19 +7,22 @@ export const buttonVariants = tv({
     // <ButtonGroup />
     group: [],
     // <Button />
-    button: [
-      "not-disabled:cursor-pointer",
-      "disabled:cursor-not-allowed",
-      "not-disabled:hover:opacity-70",
-    ],
+    button: ["not-disabled:cursor-pointer"],
   },
   variants: {
     variant: {
       default: {},
     },
+    hover: {
+      fade: { button: ["not-disabled:hover:opacity-70"] },
+      fill: { button: ["not-disabled:hover:bg-neutral-muted-bg/50"] },
+      underline: { button: ["not-disabled:hover:underline"] },
+      none: {},
+    },
   },
   defaultVariants: {
     variant: "default",
+    hover: "fade",
   },
 })
 
