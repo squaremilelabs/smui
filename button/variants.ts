@@ -11,7 +11,13 @@ export const buttonVariants = tv({
   },
   variants: {
     variant: {
-      default: {},
+      "default": {},
+      "action-button": {
+        button: ["flex items-center px-8 py-4 gap-4", "rounded-sm border", "bg-base-bg"],
+      },
+      "action-button-icon": {
+        button: ["flex items-center border rounded-sm"],
+      },
     },
     hover: {
       fade: { button: ["not-disabled:hover:opacity-70"] },
