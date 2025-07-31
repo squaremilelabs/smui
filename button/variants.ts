@@ -13,10 +13,10 @@ export const buttonVariants = tv({
     variant: {
       "default": {},
       "action-button": {
-        button: ["flex items-center px-8 py-4 gap-4 text-sm", "rounded-sm border", "bg-base-bg"],
+        button: ["flex items-center px-8 py-4 gap-4 text-sm rounded-sm"],
       },
       "action-button-icon": {
-        button: ["flex items-center border rounded-sm"],
+        button: ["flex items-center rounded-sm"],
       },
     },
     hover: {
