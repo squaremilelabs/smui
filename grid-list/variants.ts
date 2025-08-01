@@ -23,6 +23,17 @@ export const gridListVariants = tv({
           "data-selected:border-l-4 data-selected:border-l-base-outline",
         ],
       },
+      "nav-list": {
+        base: ["flex flex-col gap-2"],
+        item: [
+          "group/grid-list-item",
+          "flex items-center gap-4 px-8 py-6",
+          "cursor-pointer",
+          "rounded-sm",
+          "hover:bg-neutral-muted-bg/50",
+          "data-drop-target:outline-2",
+        ],
+      },
     },
   },
   defaultVariants: {
