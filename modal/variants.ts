@@ -8,13 +8,13 @@ export const modalVariants = tv({
     // <ModalOverlay />
     overlay: [
       "fixed inset-0 h-dvh w-dvw z-60",
-      "flex flex-col items-center pt-[10dvh]",
+      "flex flex-col items-center p-8 md:pt-[10dvh]",
       "bg-neutral-muted-bg/30 backdrop-blur-xs",
     ],
     // <Modal />
     modal: [""],
     // <Dialog />
-    content: ["flex flex-col max-w-[90dvw] max-h-[80dvh] overflow-auto"],
+    content: ["flex flex-col max-w-[95dvw] max-h-[95dvh] overflow-auto"],
   },
   variants: {
     variant: {
