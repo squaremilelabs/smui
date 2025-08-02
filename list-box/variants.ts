@@ -4,7 +4,7 @@ export type ListBoxVariantProps = VariantProps<typeof listBoxVariants>
 export const listBoxVariants = tv({
   slots: {
     // <ListBox />
-    base: ["flex flex-col"],
+    base: [],
     // <ListBoxItem />
     item: [],
     // <ListBoxSection />

@@ -22,6 +22,7 @@ export type TabsProps<T extends object> = Omit<AriaTabsProps, "children" | "clas
 
 export type TabRenderProps = WithDefaultChildren<AriaTabRenderProps>
 export type TabProps = Omit<AriaTabProps, "className"> & {
+  forwardRef?: React.Ref<HTMLDivElement>
   id: string // enforced
   textValue: string // enforced
   className: ClassValue
@@ -55,6 +56,6 @@ export function Tabs<T extends object>({
   )
 }
 
-export function Tab({ className, ...props }: TabProps) {
-  return <AriaTab {...props} className={cn(className)} />
+export function Tab({ className, forwardRef, ...props }: TabProps) {
+  return <AriaTab {...props} ref={forwardRef} className={cn(className)} />
 }
