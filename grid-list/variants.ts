@@ -17,10 +17,9 @@ export const gridListVariants = tv({
           "group/grid-list-item",
           "flex items-center",
           "bg-base-bg rounded-sm",
-          "gap-8 px-8 py-6 !outline-0",
+          "gap-8 p-8 !outline-0",
           "hover:bg-base-bg/70",
-          "focus-visible:border-l-4 focus-visible:border-l-neutral-border",
-          "data-selected:border-l-4 data-selected:border-l-base-outline",
+          "focus-visible:border-l-4 focus-visible:border-l-base-outline",
         ],
       },
       "nav-list": {
