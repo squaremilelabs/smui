@@ -20,6 +20,7 @@ export const gridListVariants = tv({
           "gap-8 p-8 !outline-0",
           "hover:bg-base-bg/70",
           "focus-visible:border-l-4 focus-visible:border-l-base-outline",
+          "data-selected:border-l-4 data-selected:border-l-base-outline",
         ],
       },
       "nav-list": {
