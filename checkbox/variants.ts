@@ -21,11 +21,16 @@ export const checkboxVariants = tv({
   },
   variants: {
     variant: {
-      default: {
+      "default": {
         checkboxBase: ["size-20 flex items-center justify-center cursor-pointer"],
         checkboxIcon: ["size-16"],
       },
-      reset: {},
+      "with-label": {
+        checkboxBase: ["flex items-center gap-4 cursor-pointer"],
+        checkboxIcon: ["size-16"],
+        checkboxLabel: [""],
+      },
+      "reset": {},
     },
   },
   defaultVariants: {
