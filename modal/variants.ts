@@ -6,19 +6,26 @@ export type ModalVariantProps = VariantProps<typeof modalVariants>
 export const modalVariants = tv({
   slots: {
     // <ModalOverlay />
-    overlay: [
-      "fixed inset-0 h-dvh w-dvw z-60",
-      "flex flex-col items-center p-8 md:pt-[10dvh]",
-      "bg-neutral-muted-bg/30 backdrop-blur-xs",
-    ],
+    overlay: [],
     // <Modal />
     modal: [""],
     // <Dialog />
-    content: ["flex flex-col max-w-[95dvw] max-h-[95dvh] overflow-auto"],
+    content: [],
   },
   variants: {
     variant: {
-      default: {},
+      default: {
+        overlay: [
+          "fixed inset-0 h-dvh w-dvw z-60",
+          "flex flex-col items-center p-8 md:pt-[10dvh]",
+          "bg-neutral-muted-bg/30 backdrop-blur-xs",
+        ],
+        content: ["flex flex-col max-w-[95dvw] max-h-[95dvh] overflow-auto"],
+      },
+      drawer: {
+        overlay: ["fixed inset-0 h-dvh w-dvw z-60", "bg-neutral-muted-bg/30 backdrop-blur-xs"],
+        content: ["fixed top-0 left-0 h-dvh overflow-auto"],
+      },
     },
     size: {
       xs: { content: ["w-xs"] },
