@@ -7,6 +7,7 @@ import {
   ModalOverlayProps as AriaModalOverlayProps,
   ModalRenderProps as AriaModalRenderProps,
   Dialog as AriaDialog,
+  DialogProps as AriaDialogProps,
   DialogRenderProps as AriaDialogRenderProps,
   DialogTrigger as AriaDialogTrigger,
   DialogTriggerProps as AriaDialogTriggerProps,
@@ -19,13 +20,14 @@ export type ModalProps = Omit<AriaModalOverlayProps, "children" | "className"> &
   variants?: ModalVariantProps
   classNames?: Partial<ModalClassNames>
   children: React.ReactNode | ((renderProps: ModalRenderProps) => React.ReactNode)
+  dialogProps?: Omit<AriaDialogProps, "children" | "className">
 }
 
 export type ModalTriggerProps = AriaDialogTriggerProps
 
 // # Components -----------------------------------------------------------------------------------
 
-export function Modal({ children, classNames, variants, ...props }: ModalProps) {
+export function Modal({ children, classNames, variants, dialogProps, ...props }: ModalProps) {
   const {
     overlay: overlayStyles,
     modal: modalStyles,
@@ -36,7 +38,10 @@ export function Modal({ children, classNames, variants, ...props }: ModalProps) 
     <AriaModalOverlay {...props} className={overlayStyles({ className: classNames?.overlay })}>
       <AriaModal className={modalStyles({ className: classNames?.modal })}>
         {(modalRenderProps) => (
-          <AriaDialog className={contentStyles({ className: classNames?.content })}>
+          <AriaDialog
+            {...dialogProps}
+            className={contentStyles({ className: classNames?.content })}
+          >
             {(dialogRenderProps) =>
               renderChildren(children, {
                 ...modalRenderProps,
