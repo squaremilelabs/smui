@@ -24,9 +24,13 @@ export const modalVariants = tv({
       },
       drawer: {
         overlay: ["fixed inset-0 h-dvh w-dvw z-60", "bg-neutral-muted-bg/30 backdrop-blur-xs"],
-        content: ["fixed top-0 left-0 h-dvh overflow-auto !outline-0"],
+        content: ["fixed top-0 h-dvh overflow-y-auto overflow-x-hidden !outline-0"],
         modal: ["!outline-0"],
       },
+    },
+    drawerPosition: {
+      left: { content: ["left-0 border-r"] },
+      right: { content: ["!right-0 !border-l"] },
     },
     size: {
       xs: { content: ["w-xs"] },

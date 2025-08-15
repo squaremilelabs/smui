@@ -13,11 +13,11 @@ export const selectVariants = tv({
     // <Select />
     base: [],
     // <SelectButton />
-    button: [],
+    button: ["flex items-center gap-4", "cursor-pointer hover:opacity-70"],
     // <SelectButton /> ... <AriaSelectValue />
-    buttonValue: [],
+    buttonValue: ["grow"],
     // <SelectButton /> ... <SelectButtonIcon />
-    buttonIcon: [],
+    buttonIcon: ["size-14 text-neutral-muted-text"],
   },
   variants: {
     variant: {
