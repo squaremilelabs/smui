@@ -12,7 +12,12 @@ export const gridListVariants = tv({
     variant: {
       "default": {},
       "task-list": {
-        base: ["flex flex-col", "gap-2", "max-h-full grow overflow-auto overscroll-contain"],
+        base: [
+          "flex flex-col",
+          "gap-2",
+          "max-h-full min-h-0 grow overflow-auto",
+          "overscroll-contain",
+        ],
         item: [
           "group/grid-list-item",
           "flex items-center flex-wrap",
