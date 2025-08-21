@@ -20,7 +20,7 @@ export const gridListVariants = tv({
         ],
         item: [
           "group/grid-list-item",
-          "flex items-center flex-wrap",
+          "flex items-center",
           "bg-base-bg rounded-sm",
           "gap-8 p-8 !outline-0",
           "hover:bg-base-bg/70",
