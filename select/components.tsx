@@ -69,7 +69,7 @@ export function Select({ variants, classNames, children, ...props }: SelectProps
     error: fieldErrorStyles,
   } = getFieldVariants(variants?.field)
 
-  const { popover: popoverStyles } = popoverVariants(variants?.popover)
+  const { content: popoverStyles } = popoverVariants(variants?.popover)
 
   const baseClassName = cn(
     baseStyles({ className: classNames?.base }),

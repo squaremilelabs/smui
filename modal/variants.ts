@@ -35,6 +35,12 @@ export const modalVariants = tv({
         ],
         modal: ["!outline-0"],
       },
+      dialog: {
+        content: ["bg-base-bg border rounded-sm", "flex flex-col gap-8 p-16"],
+      },
+      panel: {
+        content: ["bg-base-bg border backdrop-blur-xl", "flex flex-col gap-8"],
+      },
     },
     drawerPosition: {
       left: { content: ["left-0 border-r"] },
@@ -48,6 +54,20 @@ export const modalVariants = tv({
       xl: { content: ["w-xl"] },
     },
   },
+  compoundVariants: [
+    {
+      variant: ["dialog", "panel"],
+      class: {
+        overlay: [
+          "fixed inset-0 h-dvh w-dvw z-60",
+          "flex flex-col items-center p-8 md:pt-[10dvh]",
+          "bg-neutral-muted-bg/30 backdrop-blur-xs",
+          "overscroll-contain",
+        ],
+        content: ["flex flex-col max-w-[95dvw] max-h-[95dvh] overflow-auto"],
+      },
+    },
+  ],
   defaultVariants: {
     variant: "default",
     size: "sm",

@@ -27,6 +27,15 @@ export const listBoxVariants = tv({
           "data-selected:bg-neutral-muted-bg",
         ],
       },
+      select: {
+        base: ["max-h-300 overflow-auto"],
+        item: [
+          "flex items-center gap-8 text-sm",
+          "not-data-disabled:cursor-pointer not-data-disabled:hover:bg-neutral-muted-bg",
+          "px-8 py-4 rounded-sm text-neutral-text",
+          "data-selected:text-base-text data-selected:font-medium data-selected:border",
+        ],
+      },
     },
   },
   defaultVariants: {

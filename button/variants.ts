@@ -18,6 +18,31 @@ export const buttonVariants = tv({
       "action-button-icon": {
         button: ["flex items-center rounded-sm"],
       },
+      "icon-muted": {
+        button: [
+          "flex items-center rounded-sm",
+          "text-neutral-muted-text hover:text-primary-text",
+          "transition-colors",
+        ],
+      },
+      "icon-primary": {
+        button: ["flex items-center rounded-sm", "text-primary-text"],
+      },
+      "content-trigger": {
+        button: ["flex items-center justify-start gap-4 truncate text-left", "grow"],
+      },
+      "drag-handle": {
+        button: ["flex items-center text-neutral-muted-text", "h-20 cursor-move"],
+      },
+      "list-item": {
+        button: ["flex items-center justify-between p-8"],
+      },
+      "choice-item": {
+        button: ["flex items-center gap-4 px-8 py-4"],
+      },
+      "form-action": {
+        button: ["bg-neutral-muted-bg border rounded-sm", "px-8 py-4 font-medium"],
+      },
     },
     hover: {
       fade: { button: ["not-disabled:hover:opacity-70"] },

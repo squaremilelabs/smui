@@ -11,6 +11,18 @@ export const popoverVariants = tv({
   variants: {
     variant: {
       default: {},
+      menu: {
+        content: ["bg-base-bg border rounded-sm"],
+      },
+      panel: {
+        content: ["bg-base-bg border rounded-sm", "flex flex-col p-8"],
+      },
+      select: {
+        content: [
+          "bg-base-bg border-2 rounded-sm",
+          "p-4 w-(--trigger-width) max-h-300 overflow-auto",
+        ],
+      },
     },
   },
   defaultVariants: {

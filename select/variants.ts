@@ -11,11 +11,11 @@ export type SelectVariantProps = BaseSelectVariantProps & {
 export const selectVariants = tv({
   slots: {
     // <Select />
-    base: [],
+    base: ["flex flex-col gap-2 p-4"],
     // <SelectButton />
-    button: ["flex items-center gap-4", "cursor-pointer hover:opacity-70"],
+    button: ["flex items-center", "border py-4 px-8 gap-8", "cursor-pointer hover:opacity-70"],
     // <SelectButton /> ... <AriaSelectValue />
-    buttonValue: ["grow"],
+    buttonValue: ["grow text-left font-medium flex items-center"],
     // <SelectButton /> ... <SelectButtonIcon />
     buttonIcon: ["size-14 text-neutral-muted-text"],
   },
