@@ -6,6 +6,8 @@ export const tooltipVariants = tv({
   variants: {
     variant: {
       default: [],
+      info: ["bg-base-bg rounded-sm border px-8 py-4"],
+      action: ["bg-base-bg rounded-sm border px-16 py-4 text-sm"],
     },
   },
   defaultVariants: {

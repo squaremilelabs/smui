@@ -17,6 +17,19 @@ export const textFieldVariants = tv({
   variants: {
     variant: {
       default: {},
+      title: {
+        base: ["flex items-start w-full gap-8"],
+        textarea: ["text-lg w-full !outline-0 font-medium"],
+      },
+      create: {
+        base: [
+          "flex items-stretch w-full",
+          "rounded-sm gap-4 p-8",
+          "focus-within:outline-2",
+          "not-focus-within:hover:bg-neutral-muted-bg/50",
+        ],
+        input: ["!outline-0 w-full"],
+      },
     },
   },
   defaultVariants: {
