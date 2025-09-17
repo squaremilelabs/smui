@@ -1,0 +1,37 @@
+html {
+  @apply bg-base-bg;
+  @apply text-base-text;
+  @apply box-border;
+  @apply font-sans;
+  @apply text-md;
+  @apply transition-all;
+  @apply relative;
+}
+
+@layer base {
+  /*  As of Tailwind V4, border-color defaulted to currentColor. Modified here. */
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    @apply border-base-border;
+  }
+
+  * {
+    @apply outline-base-outline;
+  }
+}
+
+@layer components {
+  .react-aria-DropIndicator {
+    &[data-drop-target] {
+      height: 2px;
+      min-height: 2px;
+      background: var(--color-base-outline);
+    }
+  
+    @supports not selector(:has(.foo)) {
+      /* Undo gap in browsers that don't support :has */
+      margin-bottom: -2px;
+    }
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,0 +1,159 @@
+/* Define base color scales */
+:root {
+  --tw-neutral-0: oklch(1 0 0);
+  --tw-neutral-50: oklch(0.985 0 0);
+  --tw-neutral-100: oklch(0.97 0 0);
+  --tw-neutral-200: oklch(0.922 0 0);
+  --tw-neutral-300: oklch(0.87 0 0);
+  --tw-neutral-400: oklch(0.708 0 0);
+  --tw-neutral-500: oklch(0.556 0 0);
+  --tw-neutral-600: oklch(0.439 0 0);
+  --tw-neutral-700: oklch(0.371 0 0);
+  --tw-neutral-800: oklch(0.269 0 0);
+  --tw-neutral-900: oklch(0.205 0 0);
+  --tw-neutral-950: oklch(0.145 0 0);
+
+  --tw-red-50: oklch(0.971 0.013 17.38);
+  --tw-red-100: oklch(0.936 0.032 17.717);
+  --tw-red-200: oklch(0.885 0.062 18.334);
+  --tw-red-300: oklch(0.808 0.114 19.571);
+  --tw-red-400: oklch(0.704 0.191 22.216);
+  --tw-red-500: oklch(0.637 0.237 25.331);
+  --tw-red-600: oklch(0.577 0.245 27.325);
+  --tw-red-700: oklch(0.505 0.213 27.518);
+  --tw-red-800: oklch(0.444 0.177 26.899);
+  --tw-red-900: oklch(0.396 0.141 25.723);
+  --tw-red-950: oklch(0.258 0.092 26.042);
+
+  --sml-gold-50: oklch(97.94% 0.02 103.14);
+  --sml-gold-100: oklch(94.93% 0.05 101.86);
+  --sml-gold-200: oklch(89.80% 0.09 99.10);
+  --sml-gold-300: oklch(83.23% 0.12 96.48);
+  --sml-gold-400: oklch(76.65% 0.14 91.06);
+  --sml-gold-500: oklch(71.00% 0.13 86.56);
+  --sml-gold-600: oklch(61.31% 0.11 77.38);
+  --sml-gold-700: oklch(50.50% 0.09 67.44);
+  --sml-gold-800: oklch(44.38% 0.08 62.58);
+  --sml-gold-900: oklch(39.94% 0.07 58.15);
+  --sml-gold-950: oklch(27.10% 0.05 53.29);
+}
+
+/* 
+  [LIGHT] Map SMUI color tokens to base colors 
+  (added to `:root` because light is the default)
+*/
+:root {
+  --base-bg: var(--tw-neutral-0);
+  --base-text: var(--tw-neutral-950);
+  --base-border: var(--tw-neutral-200);
+  --base-outline: var(--sml-gold-500);
+
+  --neutral-bg: var(--tw-neutral-500);
+  --neutral-fg: var(--tw-neutral-50);
+  --neutral-text: var(--tw-neutral-600);
+  --neutral-border: var(--tw-neutral-600);
+
+  --neutral-muted-bg: var(--tw-neutral-100);
+  --neutral-muted-fg: var(--tw-neutral-500);
+  --neutral-muted-text: var(--tw-neutral-400);
+  --neutral-muted-border: var(--tw-neutral-300);
+
+  --primary-bg: var(--sml-gold-500);
+  --primary-fg: var(--sml-gold-50);
+  --primary-text: var(--sml-gold-500);
+  --primary-border: var(--sml-gold-600);
+
+  --primary-muted-bg: var(--sml-gold-50);
+  --primary-muted-fg: var(--sml-gold-600);
+  --primary-muted-text: var(--sml-gold-600);
+  --primary-muted-border: var(--sml-gold-200);
+
+  --danger-bg: var(--tw-red-700);
+  --danger-fg: var(--tw-red-50);
+  --danger-text: var(--tw-red-700);
+  --danger-border: var(--tw-red-800);
+
+  --danger-muted-bg: var(--tw-red-50);
+  --danger-muted-fg: var(--tw-red-400);
+  --danger-muted-text: var(--tw-red-400);
+  --danger-muted-border: var(--tw-red-100);
+}
+
+/* [DARK] Map SMUI Color tokens to base colors */
+.dark {
+  --base-bg: var(--tw-neutral-950);
+  --base-text: var(--tw-neutral-0);
+  --base-border: var(--tw-neutral-800);
+  --base-outline: var(--sml-gold-500);
+
+  --neutral-bg: var(--tw-neutral-300);
+  --neutral-fg: var(--tw-neutral-900);
+  --neutral-text: var(--tw-neutral-300);
+  --neutral-border: var(--tw-neutral-300);
+
+  --neutral-muted-bg: var(--tw-neutral-900);
+  --neutral-muted-fg: var(--tw-neutral-600);
+  --neutral-muted-text: var(--tw-neutral-500);
+  --neutral-muted-border: var(--tw-neutral-700);
+
+  --primary-bg: var(--sml-gold-700);
+  --primary-fg: var(--sml-gold-100);
+  --primary-text: var(--sml-gold-500);
+  --primary-border: var(--sml-gold-800);
+
+  --primary-muted-bg: var(--sml-gold-950);
+  --primary-muted-fg: var(--sml-gold-500);
+  --primary-muted-text: var(--sml-gold-300);
+  --primary-muted-border: var(--sml-gold-800);
+
+  --danger-bg: var(--tw-red-900);
+  --danger-fg: var(--tw-red-100);
+  --danger-text: var(--tw-red-900);
+  --danger-border: var(--tw-red-400);
+
+  --danger-muted-bg: var(--tw-red-950);
+  --danger-muted-fg: var(--tw-red-800);
+  --danger-muted-text: var(--tw-red-400);
+  --danger-muted-border: var(--tw-red-950);
+}
+
+@theme {
+  --color-*: initial;
+}
+
+@theme inline {
+  --color-base-bg: var(--base-bg);
+  --color-base-text: var(--base-text);
+  --color-base-border: var(--base-border);
+  --color-base-outline: var(--base-outline);
+
+  --color-neutral-bg: var(--neutral-bg);
+  --color-neutral-fg: var(--neutral-fg);
+  --color-neutral-text: var(--neutral-text);
+  --color-neutral-border: var(--neutral-border);
+
+  --color-neutral-muted-bg: var(--neutral-muted-bg);
+  --color-neutral-muted-fg: var(--neutral-muted-fg);
+  --color-neutral-muted-text: var(--neutral-muted-text);
+  --color-neutral-muted-border: var(--neutral-muted-border);
+
+  --color-primary-bg: var(--primary-bg);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-text: var(--primary-text);
+  --color-primary-border: var(--primary-border);
+
+  --color-primary-muted-bg: var(--primary-muted-bg);
+  --color-primary-muted-fg: var(--primary-muted-fg);
+  --color-primary-muted-text: var(--primary-muted-text);
+  --color-primary-muted-border: var(--primary-muted-border);
+
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-text: var(--danger-text);
+  --color-danger-border: var(--danger-border);
+
+  --color-danger-muted-bg: var(--danger-muted-bg);
+  --color-danger-muted-fg: var(--danger-muted-fg);
+  --color-danger-muted-text: var(--danger-muted-text);
+  --color-danger-muted-border: var(--danger-muted-border);
+}
