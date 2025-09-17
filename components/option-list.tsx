@@ -33,15 +33,14 @@ import {
   MenuProps,
   MenuSection,
   MenuItemRenderProps,
-  // SubmenuTrigger,
-  Text,
 } from "react-aria-components"
+import { CheckIcon, SquareCheckIcon, SquareIcon } from "lucide-react"
 import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { WithDefaultChildren } from "../utils/react-aria"
 // import { SMUIDialog, SMUIDialogProps } from "./dialog"
 
 type ListRenderType = "listbox" | "menu"
-type ListVisualType = "action" | "select" | "navigation"
+type ListVisualType = "action" | "select" | "navigation" | "checklist"
 
 type ListNodeType = "item" | "section" | "separator" // | "submenu"
 
@@ -102,7 +101,7 @@ type ListBoxOrMenuAriaProps<
 export type SMUIOptionListProps<R extends ListRenderType, I extends object = object> = {
   ariaLabel: string
   renderType: R
-  visualType?: ListVisualType
+  visualType: ListVisualType
   nodes: Array<ListNode<I>>
   renderItemContent?: (
     item: R extends "listbox" ? ListItemNode<I> : ListItemNode<I>,
@@ -111,7 +110,7 @@ export type SMUIOptionListProps<R extends ListRenderType, I extends object = obj
       : WithDefaultChildren<MenuItemRenderProps>
   ) => React.ReactNode
   classNames?: Partial<SlottedClassNames<typeof optionListStyles>>
-  styles?: VariantProps<typeof optionListStyles>
+  styles?: Omit<VariantProps<typeof optionListStyles>, "visualType">
   // TODO: Support submenus. Not currently working.
   // submenuDialogProps?: Partial<SMUIDialogProps<"popover">>
 } & ListBoxOrMenuAriaProps<R, I>
@@ -169,6 +168,7 @@ export type SMUIOptionListProps<R extends ListRenderType, I extends object = obj
 export function SMUIOptionList<R extends ListRenderType, I extends object = object>({
   ariaLabel,
   renderType,
+  visualType,
   nodes,
   classNames,
   styles,
@@ -183,10 +183,14 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
   const SectionComponent = renderType === "listbox" ? ListBoxSection : MenuSection
 
   // Prepare slotted styles
-  const { list, item, itemLabel, section, sectionLabel } = optionListStyles(styles)
+  const { list, item, itemContent, itemIcon, section, sectionLabel } = optionListStyles({
+    ...styles,
+    visualType,
+  })
   const listStyles = list({ className: classNames?.list })
   const itemStyles = item({ className: classNames?.item })
-  const itemLabelStyles = itemLabel({ className: classNames?.itemLabel })
+  const itemContentStyles = itemContent({ className: classNames?.itemContent })
+  const itemIconStyles = itemIcon({ className: classNames?.itemIcon })
   const sectionStyles = section({ className: classNames?.section })
   const sectionLabelStyles = sectionLabel({ className: classNames?.sectionLabel })
 
@@ -198,31 +202,35 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
         if (node.type === "section") {
           return (
             <SectionComponent className={sectionStyles}>
-              <Header className={sectionLabelStyles}>
-                {node.label}
-                {/* <div className="bg-base-border h-[1px] grow ml-space-md" /> */}
-              </Header>
+              <Header className={sectionLabelStyles}>{node.label}</Header>
               <Collection items={node.nodes}>{renderListNode}</Collection>
             </SectionComponent>
           )
         }
 
-        const defaultTextLabel = (
-          <Text id="label" slot="label" className={itemLabelStyles}>
-            {node.label}
-          </Text>
-        )
-
         // Render Item
         if (node.type === "item") {
           return (
             <ItemComponent id={node.id} key={node.id} textValue={node.label} className={itemStyles}>
-              {(renderProps) =>
-                renderItemContent
-                  ? // @ts-expect-error -- // ! TS can't narrow the type here correctly
-                    renderItemContent(node, { ...renderProps, defaultChildren: defaultTextContent })
-                  : defaultTextLabel
-              }
+              {(renderProps) => (
+                <>
+                  {visualType === "checklist" &&
+                    (renderProps.isSelected ? (
+                      <SquareCheckIcon className={itemIconStyles} />
+                    ) : (
+                      <SquareIcon className={itemIconStyles} />
+                    ))}
+                  <div className={itemContentStyles}>
+                    {renderItemContent
+                      ? // @ts-expect-error -- // ! TS can't narrow the type here correctly
+                        renderItemContent(node, { ...renderProps, defaultChildren: node.label })
+                      : node.label}
+                  </div>
+                  {visualType === "select" && renderProps.isSelected && (
+                    <CheckIcon className={itemIconStyles} />
+                  )}
+                </>
+              )}
             </ItemComponent>
           )
         }
@@ -238,9 +246,9 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
         //             ? // @ts-expect-error -- // ! TS can't narrow the type here correctly
         //               renderItemContent(node, {
         //                 ...renderProps,
-        //                 defaultChildren: defaultTextLabel,
+        //                 defaultChildren: node.label,
         //               })
-        //             : defaultTextLabel
+        //             : node.label
         //         }
         //       </MenuItem>
         //       <SMUIDialog
@@ -288,7 +296,8 @@ const optionListStyles = tv({
       "data-disabled:cursor-not-allowed",
       "data-disabled:opacity-50",
     ],
-    itemLabel: [""],
+    itemContent: ["flex grow items-center"],
+    itemIcon: ["self-start"],
     section: ["group/list-section flex flex-col"],
     sectionLabel: [
       "flex items-center",
@@ -307,8 +316,13 @@ const optionListStyles = tv({
         ],
       },
       action: {
-        list: [],
+        list: ["bg-base-bg"],
         item: ["not-data-disabled:hover:bg-neutral-muted-bg", "data-pressed:scale-99"],
+      },
+      checklist: {
+        list: ["bg-base-bg"],
+        item: ["not-data-disabled:hover:bg-neutral-muted-bg"],
+        itemIcon: ["text-neutral-muted-text group-data-selected/list-item:text-base-text"],
       },
       navigation: {},
     },
@@ -316,18 +330,20 @@ const optionListStyles = tv({
       compact: {
         list: ["gap-space-xs p-space-xs rounded-xs"],
         item: [
-          "h-box-sm px-space-sm rounded-sm text-sm",
+          "h-box-sm gap-space-xs px-space-sm rounded-sm text-sm",
           "group-not-empty/list-section:ml-space-md",
         ],
+        itemIcon: ["h-content-sm min-w-content-sm my-space-sm"],
         section: ["gap-space-xs my-space-sm"],
         sectionLabel: ["px-space-sm mb-space-xs text-xs"],
       },
       comfortable: {
         list: ["gap-space-sm p-space-sm rounded-sm"],
         item: [
-          "h-box-md px-space-md text-md rounded-sm",
+          "h-box-md px-space-md gap-space-sm text-md rounded-sm",
           "group-not-empty/list-section:ml-space-lg",
         ],
+        itemIcon: ["h-content-md min-w-content-md my-space-md"],
         section: ["gap-space-sm my-space-md"],
         sectionLabel: ["px-space-md mb-space-sm text-sm"],
       },
