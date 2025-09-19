@@ -292,6 +292,7 @@ const dialogStyles = tv({
       popover: {
         underlay: [],
         overlay: [
+          "w-[300px]",
           "origin-(--trigger-anchor-point)",
           "data-entering:opacity-0 data-exiting:opacity-0",
           "data-[placement=bottom]:data-entering:-translate-y-4 data-[placement=bottom]:data-exiting:-translate-y-4",
@@ -371,6 +372,16 @@ const dialogStyles = tv({
       visualType: "popover",
       width: "trigger",
       className: { overlay: ["w-(--trigger-width)"] },
+    },
+    {
+      visualType: "popover",
+      width: "sm",
+      className: { overlay: ["w-[150px]"] },
+    },
+    {
+      visualType: "popover",
+      width: "md",
+      className: { overlay: ["w-[300px]"] },
     },
   ],
 })

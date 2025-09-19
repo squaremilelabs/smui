@@ -37,7 +37,6 @@ import {
 import { CheckIcon, SquareCheckIcon, SquareIcon } from "lucide-react"
 import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { WithDefaultChildren } from "../utils/react-aria"
-// import { SMUIDialog, SMUIDialogProps } from "./dialog"
 
 type ListRenderType = "listbox" | "menu"
 type ListVisualType = "action" | "select" | "navigation" | "checklist"
@@ -70,14 +69,14 @@ type ListSectionNode<I extends object = object> = BaseListNode & {
 //   nodes: Array<ListItemNode<I> | ListSectionNode<I>>
 // }
 
-type ListNode<I extends object = object> = ListItemNode<I> | ListSectionNode<I> // | ListSubmenuNode<I>
+export type SMUIOptionListNode<I extends object = object> = ListItemNode<I> | ListSectionNode<I> // | ListSubmenuNode<I>
 
 type ListBoxOrMenuAriaProps<
   R extends ListRenderType,
   I extends object = object,
 > = R extends "listbox"
-  ? Omit<ListBoxProps<ListNode<I>>, "children" | "items" | "className">
-  : Omit<MenuProps<ListNode<I>>, "children" | "items" | "className">
+  ? Omit<ListBoxProps<SMUIOptionListNode<I>>, "children" | "items" | "className">
+  : Omit<MenuProps<SMUIOptionListNode<I>>, "children" | "items" | "className">
 
 /**
  * # SMUIOptionListProps
@@ -102,7 +101,7 @@ export type SMUIOptionListProps<R extends ListRenderType, I extends object = obj
   ariaLabel: string
   renderType: R
   visualType: ListVisualType
-  nodes: Array<ListNode<I>>
+  nodes: Array<SMUIOptionListNode<I>>
   renderItemContent?: (
     item: R extends "listbox" ? ListItemNode<I> : ListItemNode<I>,
     renderProps: R extends "listbox"
@@ -297,7 +296,11 @@ const optionListStyles = tv({
       "data-disabled:opacity-50",
     ],
     itemContent: ["flex grow items-center"],
-    itemIcon: ["self-start"],
+    itemIcon: [
+      "self-start",
+      // hide if not inside of list (e.g., when used with Select)
+      "hidden group-not-empty/list-item:block",
+    ],
     section: ["group/list-section flex flex-col"],
     sectionLabel: [
       "flex items-center",
@@ -322,7 +325,7 @@ const optionListStyles = tv({
       checklist: {
         list: ["bg-base-bg"],
         item: ["not-data-disabled:hover:bg-neutral-muted-bg"],
-        itemIcon: ["text-neutral-muted-text group-data-selected/list-item:text-base-text"],
+        itemIcon: ["text-neutral-muted-text", "group-data-selected/list-item:text-base-text"],
       },
       navigation: {},
     },
