@@ -61,14 +61,6 @@ type ListSectionNode<I extends object = object> = BaseListNode & {
   nodes: Array<ListItemNode<I> /* | ListSubmenuNode<I> */>
 }
 
-// Only available for Menus
-// type ListSubmenuNode<I extends object = object> = BaseListNode & {
-//   id: string
-//   type: "submenu"
-//   label: string
-//   nodes: Array<ListItemNode<I> | ListSectionNode<I>>
-// }
-
 export type SMUIOptionListNode<I extends object = object> = ListItemNode<I> | ListSectionNode<I> // | ListSubmenuNode<I>
 
 type ListBoxOrMenuAriaProps<
@@ -234,36 +226,7 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
           )
         }
 
-        // TODO: Support submenus. Not currently working.
-        // Render Submenu (only for Menu)
-        // if (node.type === "submenu" && renderType === "menu") {
-        //   return (
-        //     <SubmenuTrigger>
-        //       <MenuItem id={node.id} key={node.id} textValue={node.label} className={itemStyles}>
-        //         {(renderProps) =>
-        //           renderItemContent
-        //             ? // @ts-expect-error -- // ! TS can't narrow the type here correctly
-        //               renderItemContent(node, {
-        //                 ...renderProps,
-        //                 defaultChildren: node.label,
-        //               })
-        //             : node.label
-        //         }
-        //       </MenuItem>
-        //       <SMUIDialog
-        //         ariaLabel={node.label}
-        //         renderType="popover"
-        //         visualType={{ desktop: "popover", mobile: "sheet" }}
-        //         {...submenuDialogProps}
-        //       >
-        //         <Menu items={node.nodes} className={baseListStyles}>
-        //           {renderListNode}
-        //         </Menu>
-        //       </SMUIDialog>
-        //     </SubmenuTrigger>
-        //   )
-        // }
-
+        // Should reach here unless an unsupported node type is used - this sill result in an error
         return null
       }}
     </ListComponent>
