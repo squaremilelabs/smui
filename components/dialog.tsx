@@ -51,23 +51,23 @@ const TRANSITION_DURATION_CLASSNAME = "duration-300"
 /**
  * Determines how the dialog is instantiated in the DOM: as a Modal or a Popover.
  */
-type DialogRenderType = "modal" | "popover"
+export type SMUIDialogRenderType = "modal" | "popover"
 /**
  * Visual presentation options for a given render type.
  *
  * - For renderType="popover": allows "modal" | "popover" | "sheet" (sheet useful on mobile)
  * - For renderType="modal": allows "modal" | "sheet"
  */
-type DialogVisualType<R extends DialogRenderType> = R extends "popover"
+export type SMUIDialogVisualType<R extends SMUIDialogRenderType> = R extends "popover"
   ? "modal" | "popover" | "sheet"
   : "modal" | "sheet"
 /**
  * Responsive visual type.
  * Use to render differently on desktop vs mobile (e.g., modal on desktop, sheet on mobile).
  */
-type DialogResponsiveVisualType<R extends DialogRenderType> = {
-  desktop: DialogVisualType<R>
-  mobile: DialogVisualType<R>
+export type SMUIDialogResponsiveVisualType<R extends SMUIDialogRenderType> = {
+  desktop: SMUIDialogVisualType<R>
+  mobile: SMUIDialogVisualType<R>
 }
 
 /**
@@ -91,17 +91,17 @@ type DialogResponsiveVisualType<R extends DialogRenderType> = {
  * - For `renderType="modal"`: RAC `ModalOverlayProps` (excluding `children` and `className`).
  * - For `renderType="popover"`: RAC `PopoverProps` (excluding `children` and `className`).
  */
-export type SMUIDialogProps<R extends DialogRenderType> = {
+export type SMUIDialogProps<R extends SMUIDialogRenderType> = {
   ariaLabel: string
   children?: ChildrenOrFunction<{
     overlayState: OverlayTriggerState | null
-    resolvedVisualType: DialogVisualType<R>
+    resolvedVisualType: SMUIDialogVisualType<R>
   }>
   renderType: R
-  visualType?: DialogVisualType<R> | DialogResponsiveVisualType<R>
-  styles?: Omit<VariantProps<typeof dialogStyles>, "visualType" | "isMounting">
+  visualType?: SMUIDialogVisualType<R> | SMUIDialogResponsiveVisualType<R>
+  styles?: Omit<VariantProps<typeof smuiDialogStyles>, "visualType" | "isMounting">
   classNames?: Partial<
-    SlottedClassNames<typeof dialogStyles, { resolvedVisualType: DialogVisualType<R> }>
+    SlottedClassNames<typeof smuiDialogStyles, { resolvedVisualType: SMUIDialogVisualType<R> }>
   >
 } & (R extends "modal"
   ? Omit<ModalOverlayProps, "children" | "className">
@@ -159,7 +159,7 @@ export const SMUIDialogTrigger = DialogTrigger
  *   </SMUIDialog>
  * </SMUIDialogTrigger>
  */
-export function SMUIDialog<R extends DialogRenderType>({
+export function SMUIDialog<R extends SMUIDialogRenderType>({
   children,
   ariaLabel,
   renderType,
@@ -183,7 +183,7 @@ export function SMUIDialog<R extends DialogRenderType>({
 
   // Resolve the visual type
   const isMobile = useIsMobile()
-  let resolvedVisualType = renderType as DialogVisualType<R>
+  let resolvedVisualType = renderType as SMUIDialogVisualType<R>
   if (typeof visualType === "string") {
     resolvedVisualType = visualType
   }
@@ -192,7 +192,7 @@ export function SMUIDialog<R extends DialogRenderType>({
   }
 
   // Prepare slotted styles
-  const { underlay, overlay, content } = dialogStyles({
+  const { underlay, overlay, content } = smuiDialogStyles({
     ...styles,
     isMounting,
     visualType: resolvedVisualType,
@@ -215,7 +215,7 @@ export function SMUIDialog<R extends DialogRenderType>({
           <Dialog aria-label={ariaLabel} className={contentStyles}>
             {composeChildren(children, {
               overlayState,
-              resolvedVisualType: resolvedVisualType as DialogVisualType<"modal">,
+              resolvedVisualType: resolvedVisualType as SMUIDialogVisualType<"modal">,
             })}
           </Dialog>
         </Modal>
@@ -267,7 +267,7 @@ function PopoverUnderlay({ className, isOpen }: { className: ClassValue; isOpen:
  * - modalWidth: xs | sm | md | lg | screen — size presets for modal presentation
  * - matchTriggerWidth: when true for popovers, matches the trigger width
  */
-const dialogStyles = tv({
+export const smuiDialogStyles = tv({
   slots: {
     underlay: [
       "fixed inset-0 h-dvh w-dvw",

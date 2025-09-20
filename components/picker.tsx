@@ -140,9 +140,9 @@ export type SMUIPickerRenderItemContentProps<I extends object = object> =
  */
 export type SMUIIPickerProps<I extends object = object> = {
   ariaLabel: string
-  styles?: VariantProps<typeof pickerStyles>
+  styles?: VariantProps<typeof smuiPickerStyles>
   classNames?: Partial<
-    SlottedClassNames<typeof pickerStyles> & {
+    SlottedClassNames<typeof smuiPickerStyles> & {
       dialog: SMUIDialogProps<"popover">["classNames"]
       optionList: SMUIOptionListProps<"listbox", I>["classNames"]
     }
@@ -199,7 +199,7 @@ export function SMUIPicker<I extends object = object>({
   classNames,
   ...props
 }: SMUIIPickerProps<I>) {
-  const { wrapper, triggerButton, itemContent, chevronIcon } = pickerStyles(styles)
+  const { wrapper, triggerButton, itemContent, chevronIcon } = smuiPickerStyles(styles)
   const wrapperStyles = wrapper({ className: classNames?.wrapper })
   const itemContentStyles = itemContent({ className: classNames?.itemContent })
   const chevronIconStyles = chevronIcon({ className: classNames?.chevronIcon })
@@ -246,7 +246,7 @@ export function SMUIPicker<I extends object = object>({
   )
 }
 
-const pickerStyles = tv({
+export const smuiPickerStyles = tv({
   slots: {
     wrapper: [],
     triggerButton: [],

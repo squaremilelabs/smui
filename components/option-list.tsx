@@ -9,7 +9,7 @@
  *
  * Features
  * - Shared API across listbox and menu modes (`renderType="listbox" | "menu"`).
- * - Section headers and grouped items via `ListSectionNode`.
+ * - Section headers and grouped items via `SMUIOptionListSectionNode`.
  * - Slot-based styling using Tailwind Variants with `styles` and `classNames` overrides.
  * - Optional `renderItemContent` to fully control item rendering while still
  *   getting RAC render props and a `defaultChildren` fallback.
@@ -38,33 +38,34 @@ import { CheckIcon, SquareCheckIcon, SquareIcon } from "lucide-react"
 import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { WithDefaultChildren } from "../utils/react-aria"
 
-type ListRenderType = "listbox" | "menu"
-type ListVisualType = "action" | "select" | "navigation" | "checklist"
+export type SMUIOptionListRenderType = "listbox" | "menu"
+export type SMUIOptionListVisualType = "action" | "select" | "navigation" | "checklist"
+export type SMUIOptionListNodeType = "item" | "section"
 
-type ListNodeType = "item" | "section" | "separator" // | "submenu"
-
-type BaseListNode = {
-  type: ListNodeType
+type SMUIBaseOptionListNode = {
+  type: SMUIOptionListNodeType
 }
 
-type ListItemNode<I extends object = object> = BaseListNode & {
+export type SMUIOptionListItemNode<I extends object = object> = SMUIBaseOptionListNode & {
   id: string
   type: "item"
   label: string
   data?: I
 }
 
-type ListSectionNode<I extends object = object> = BaseListNode & {
+export type SMUIOptionListSectionNode<I extends object = object> = SMUIBaseOptionListNode & {
   id: string
   type: "section"
   label: string
-  nodes: Array<ListItemNode<I> /* | ListSubmenuNode<I> */>
+  nodes: Array<SMUIOptionListItemNode<I>>
 }
 
-export type SMUIOptionListNode<I extends object = object> = ListItemNode<I> | ListSectionNode<I> // | ListSubmenuNode<I>
+export type SMUIOptionListNode<I extends object = object> =
+  | SMUIOptionListItemNode<I>
+  | SMUIOptionListSectionNode<I>
 
 type ListBoxOrMenuAriaProps<
-  R extends ListRenderType,
+  R extends SMUIOptionListRenderType,
   I extends object = object,
 > = R extends "listbox"
   ? Omit<ListBoxProps<SMUIOptionListNode<I>>, "children" | "items" | "className">
@@ -89,19 +90,19 @@ type ListBoxOrMenuAriaProps<
  * - For `renderType="listbox"`: relevant RAC `ListBoxProps` (minus children/items/className).
  * - For `renderType="menu"`: relevant RAC `MenuProps` (minus children/items/className).
  */
-export type SMUIOptionListProps<R extends ListRenderType, I extends object = object> = {
+export type SMUIOptionListProps<R extends SMUIOptionListRenderType, I extends object = object> = {
   ariaLabel: string
   renderType: R
-  visualType: ListVisualType
+  visualType: SMUIOptionListVisualType
   nodes: Array<SMUIOptionListNode<I>>
   renderItemContent?: (
-    item: R extends "listbox" ? ListItemNode<I> : ListItemNode<I>,
+    item: R extends "listbox" ? SMUIOptionListNode<I> : SMUIOptionListNode<I>,
     renderProps: R extends "listbox"
       ? WithDefaultChildren<ListBoxItemRenderProps>
       : WithDefaultChildren<MenuItemRenderProps>
   ) => React.ReactNode
-  classNames?: Partial<SlottedClassNames<typeof optionListStyles>>
-  styles?: Omit<VariantProps<typeof optionListStyles>, "visualType">
+  classNames?: Partial<SlottedClassNames<typeof smuiOptionListStyles>>
+  styles?: Omit<VariantProps<typeof smuiOptionListStyles>, "visualType">
   // TODO: Support submenus. Not currently working.
   // submenuDialogProps?: Partial<SMUIDialogProps<"popover">>
 } & ListBoxOrMenuAriaProps<R, I>
@@ -156,7 +157,7 @@ export type SMUIOptionListProps<R extends ListRenderType, I extends object = obj
  *   ]
  * />
  */
-export function SMUIOptionList<R extends ListRenderType, I extends object = object>({
+export function SMUIOptionList<R extends SMUIOptionListRenderType, I extends object = object>({
   ariaLabel,
   renderType,
   visualType,
@@ -174,7 +175,7 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
   const SectionComponent = renderType === "listbox" ? ListBoxSection : MenuSection
 
   // Prepare slotted styles
-  const { list, item, itemContent, itemIcon, section, sectionLabel } = optionListStyles({
+  const { list, item, itemContent, itemIcon, section, sectionLabel } = smuiOptionListStyles({
     ...styles,
     visualType,
   })
@@ -247,7 +248,7 @@ export function SMUIOptionList<R extends ListRenderType, I extends object = obje
  * - visualType: "select" | "action" | "navigation" — semantic presets
  * - density: "compact" | "comfortable" — spacing and sizing
  */
-const optionListStyles = tv({
+export const smuiOptionListStyles = tv({
   slots: {
     list: ["group/list flex flex-col transition-all"],
     item: [
