@@ -11,7 +11,7 @@ import {
 import { tv, VariantProps } from "tailwind-variants"
 import { SlottedClassNames } from "../utils/tailwind"
 
-type SMUIBaseDataTreeListItem<
+export type SMUIDataTreeListItem<
   I extends object = object,
   K extends string | undefined = undefined,
 > = {
@@ -19,13 +19,7 @@ type SMUIBaseDataTreeListItem<
   kind?: K
   label: string
   data: I
-}
-
-export type SMUIDataTreeNestedListItem<
-  I extends object = object,
-  K extends string | undefined = undefined,
-> = SMUIBaseDataTreeListItem<I, K> & {
-  items?: Array<SMUIDataTreeNestedListItem<I, K>>
+  items?: Array<SMUIDataTreeListItem<I, K>>
 }
 
 export type SMUIDataTreeListProps<
@@ -33,9 +27,9 @@ export type SMUIDataTreeListProps<
   K extends string | undefined = undefined,
 > = {
   ariaLabel: string
-  items: SMUIDataTreeNestedListItem<I, K>[]
+  items: SMUIDataTreeListItem<I, K>[]
   renderItemContent: (
-    node: SMUIDataTreeNestedListItem<I, K>,
+    node: SMUIDataTreeListItem<I, K>,
     renderProps: TreeItemContentRenderProps
   ) => React.ReactNode
   classNames?: Partial<SlottedClassNames<typeof smuiDataTreeListStyles>>
@@ -80,46 +74,3 @@ export const smuiDataTreeListStyles = tv({
     item: [],
   },
 })
-
-// Optional utilities for building tree structure from a flat list
-export type SMUIDataTreeFlatListItem<
-  I extends object = object,
-  K extends string | undefined = undefined,
-> = SMUIBaseDataTreeListItem<I, K> & {
-  parentId: string | null
-}
-
-export function constructSMUIDataTreeListItems<
-  I extends object = object,
-  K extends string | undefined = undefined,
->(items: SMUIDataTreeFlatListItem<I, K>[]): SMUIDataTreeNestedListItem<I, K>[] {
-  // Group items by parentId for easy lookup
-  const itemsByParentId = new Map<string | null, SMUIDataTreeFlatListItem<I, K>[]>()
-  for (const item of items) {
-    if (!itemsByParentId.has(item.parentId)) {
-      itemsByParentId.set(item.parentId, [item])
-    } else {
-      itemsByParentId.get(item.parentId)!.push(item)
-    }
-  }
-
-  // Keep track of built level ids to avoid infinite loops in case of cyclic references
-  const builtLevelIds = new Set<string | null>()
-
-  function buildLevelNodes(levelId: string | null): SMUIDataTreeNestedListItem<I, K>[] {
-    if (builtLevelIds.has(levelId)) return []
-    builtLevelIds.add(levelId)
-    const levelNodes = itemsByParentId.get(levelId)
-    if (!levelNodes) return []
-    return levelNodes.map((currentNode) => ({
-      id: currentNode.id,
-      label: currentNode.label,
-      kind: currentNode.kind,
-      data: currentNode.data,
-      items: buildLevelNodes(currentNode.id),
-    }))
-  }
-
-  // Start building from root items (parentId === null)
-  return buildLevelNodes(null)
-}
