@@ -249,10 +249,9 @@ export function SMUIPicker<I extends object = object>({
 export const smuiPickerStyles = tv({
   slots: {
     wrapper: [],
-    triggerButton: [],
-    selectValue: [],
-    itemContent: [],
-    chevronIcon: [],
+    triggerButton: ["flex items-center"],
+    itemContent: ["flex items-center"],
+    chevronIcon: ["size-content-sm min-w-content-sm"],
   },
   variants: {
     density: {},

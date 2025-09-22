@@ -22,6 +22,8 @@ export type SMUIDataTreeListItem<
   items?: Array<SMUIDataTreeListItem<I, K>>
 }
 
+export type SMUIDataTreeListItemRenderProps = TreeItemContentRenderProps
+
 export type SMUIDataTreeListProps<
   I extends object = object,
   K extends string | undefined = undefined,
@@ -30,7 +32,7 @@ export type SMUIDataTreeListProps<
   items: SMUIDataTreeListItem<I, K>[]
   renderItemContent: (
     node: SMUIDataTreeListItem<I, K>,
-    renderProps: TreeItemContentRenderProps
+    renderProps: SMUIDataTreeListItemRenderProps
   ) => React.ReactNode
   classNames?: Partial<SlottedClassNames<typeof smuiDataTreeListStyles>>
   styles?: VariantProps<typeof smuiDataTreeListStyles>
