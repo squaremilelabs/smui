@@ -60,8 +60,16 @@ export function SMUITabList<I extends object = object>({
 
 export const smuiTabListStyles = tv({
   slots: {
-    base: "",
-    list: "",
-    tab: "",
+    base: ["flex w-full"],
+    list: ["flex w-full", "border-b-2"],
+    tab: [
+      "transition-all",
+      "flex items-center",
+      "px-space-lg py-space-md text-sm",
+      "text-neutral-muted-text data-selected:text-base-text data-selected:font-semibold",
+      "-mb-[2px] border-b-2",
+      "data-selected:border-base-outline",
+      "cursor-pointer hover:bg-neutral-muted-bg hover:border-neutral-muted-border",
+    ],
   },
 })

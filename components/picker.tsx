@@ -224,8 +224,13 @@ export function SMUIPicker<I extends object = object>({
         ariaLabel={`${ariaLabel} Dialog`}
         renderType="popover"
         visualType={dialogVisualType}
-        styles={dialogStyles}
+        styles={{
+          width: "trigger",
+          ...dialogStyles,
+        }}
+        crossOffset={0}
         classNames={classNames?.dialog}
+        placement="bottom start"
       >
         <SMUIOptionList
           ariaLabel={`${ariaLabel} Options`}
@@ -248,9 +253,9 @@ export function SMUIPicker<I extends object = object>({
 
 export const smuiPickerStyles = tv({
   slots: {
-    wrapper: [],
-    triggerButton: ["flex items-center"],
-    itemContent: ["flex items-center"],
+    wrapper: ["flex w-full"],
+    triggerButton: ["flex items-center grow p-space-md"],
+    itemContent: ["flex items-center grow", ""],
     chevronIcon: ["size-content-sm min-w-content-sm"],
   },
   variants: {

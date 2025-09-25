@@ -226,7 +226,12 @@ export function SMUIDialog<R extends SMUIDialogRenderType>({
   // Render Popover
   if (renderType === "popover") {
     return (
-      <Popover className={overlayStyles} offset={4} {...(props as PopoverProps)}>
+      <Popover
+        className={overlayStyles}
+        offset={4}
+        containerPadding={0}
+        {...(props as PopoverProps)}
+      >
         {/* Though this is nested inside of Popover, it renders as a portal behind the overlay */}
         <PopoverUnderlay className={underlayStyles} isOpen={isOpen} />
         <Dialog aria-label={ariaLabel} className={contentStyles}>

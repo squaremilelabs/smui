@@ -34,7 +34,7 @@ import {
   MenuSection,
   MenuItemRenderProps,
 } from "react-aria-components"
-import { CheckIcon, SquareCheckIcon, SquareIcon } from "lucide-react"
+import { SquareCheckIcon, SquareIcon } from "lucide-react"
 import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { WithDefaultChildren } from "../utils/react-aria"
 
@@ -218,9 +218,6 @@ export function SMUIOptionList<R extends SMUIOptionListRenderType, I extends obj
                         renderItemContent(node, { ...renderProps, defaultChildren: node.label })
                       : node.label}
                   </div>
-                  {visualType === "select" && renderProps.isSelected && (
-                    <CheckIcon className={itemIconStyles} />
-                  )}
                 </>
               )}
             </ItemComponent>
@@ -254,12 +251,12 @@ export const smuiOptionListStyles = tv({
     item: [
       "group/list-item",
       "transition-all",
-      "flex items-center",
+      "flex items-center w-full",
       "not-data-disabled:cursor-pointer",
       "data-disabled:cursor-not-allowed",
       "data-disabled:opacity-50",
     ],
-    itemContent: ["flex grow items-center"],
+    itemContent: ["flex w-full grow items-center"],
     itemIcon: [
       "self-start",
       // hide if not inside of list (e.g., when used with Select)
