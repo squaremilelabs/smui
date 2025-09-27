@@ -292,12 +292,13 @@ export const smuiDialogStyles = tv({
           "bg-neutral-muted-bg/50 backdrop-blur-xs",
         ],
         overlay: ["max-h-full w-sm max-w-full"],
-        content: ["bg-base-bg rounded-sm border-2"],
+        content: ["bg-base-bg rounded-md border"],
       },
       popover: {
         underlay: [],
         overlay: [
           "w-[300px]",
+          // Animation
           "origin-(--trigger-anchor-point)",
           "data-entering:opacity-0 data-exiting:opacity-0",
           "data-[placement=bottom]:data-entering:-translate-y-4 data-[placement=bottom]:data-exiting:-translate-y-4",
@@ -305,12 +306,13 @@ export const smuiDialogStyles = tv({
           "data-[placement=right]:data-entering:-translate-x-4 data-[placement=right]:data-exiting:-translate-x-4",
           "data-[placement=left]:data-entering:translate-x-4 data-[placement=left]:data-exiting:translate-x-4",
         ],
-        content: ["rounded-sm border-2", "bg-base-bg/30 backdrop-blur-sm"],
+        content: ["rounded-md border", "bg-base-bg/30 backdrop-blur-sm"],
       },
       sheet: {
         underlay: ["bg-neutral-muted-bg/50 backdrop-blur-xs"],
         overlay: [
-          "!fixed !top-auto !bottom-0 !left-0 h-[50dvh] !max-h-[50dvh] w-dvw",
+          "!fixed !top-auto !bottom-0 !left-0",
+          "h-[50dvh] !max-h-[50dvh] w-dvw",
           "data-entering:h-0 data-exiting:h-0",
           "data-entering:overflow-hidden data-exiting:overflow-hidden",
         ],
@@ -328,7 +330,7 @@ export const smuiDialogStyles = tv({
         underlay: ["bg-neutral-bg/50"],
       },
     },
-    width: {
+    size: {
       xs: {},
       sm: {},
       md: {},
@@ -346,27 +348,27 @@ export const smuiDialogStyles = tv({
     // Modal Sizes
     {
       visualType: "modal",
-      width: "xs",
+      size: "xs",
       className: { overlay: ["w-xs"], content: ["rounded-xs"] },
     },
     {
       visualType: "modal",
-      width: "sm",
+      size: "sm",
       className: { overlay: ["w-sm"], content: ["rounded-sm"] },
     },
     {
       visualType: "modal",
-      width: "md",
+      size: "md",
       className: { overlay: ["w-md"], content: ["rounded-md"] },
     },
     {
       visualType: "modal",
-      width: "lg",
+      size: "lg",
       className: { overlay: ["w-lg"], content: ["rounded-lg"] },
     },
     {
       visualType: "modal",
-      width: "screen",
+      size: "screen",
       className: {
         underlay: ["p-0"],
         overlay: ["h-dvh w-dvw"],
@@ -375,17 +377,17 @@ export const smuiDialogStyles = tv({
     },
     {
       visualType: "popover",
-      width: "trigger",
+      size: "trigger",
       className: { overlay: ["w-(--trigger-width)"] },
     },
     {
       visualType: "popover",
-      width: "sm",
+      size: "sm",
       className: { overlay: ["w-[150px]"] },
     },
     {
       visualType: "popover",
-      width: "md",
+      size: "md",
       className: { overlay: ["w-[300px]"] },
     },
   ],

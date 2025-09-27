@@ -8,6 +8,8 @@ html {
   @apply relative;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   /*  As of Tailwind V4, border-color defaulted to currentColor. Modified here. */
   *, ::after, ::before, ::backdrop, ::file-selector-button {
@@ -20,6 +22,10 @@ html {
 }
 
 @layer components {
+  .lucide {
+    width: 1em;
+    height: 1lh;
+  }
   .react-aria-DropIndicator {
     &[data-drop-target] {
       height: 2px;
@@ -33,5 +39,3 @@ html {
     }
   }
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
