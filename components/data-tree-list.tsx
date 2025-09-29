@@ -11,44 +11,34 @@ import {
 import { tv, VariantProps } from "tailwind-variants"
 import { SlottedClassNames } from "../utils/tailwind"
 
-export type SMUIDataTreeListItem<
-  I extends object = object,
-  K extends string | undefined = undefined,
-> = {
+export type SMUIDataTreeListItem<I extends object = object> = {
   id: string
-  kind?: K
   label: string
   data: I
-  items?: Array<SMUIDataTreeListItem<I, K>>
+  items?: Array<SMUIDataTreeListItem<I>>
 }
 
 export type SMUIDataTreeListItemRenderProps = TreeItemContentRenderProps
 
-export type SMUIDataTreeListProps<
-  I extends object = object,
-  K extends string | undefined = undefined,
-> = {
+export type SMUIDataTreeListProps<I extends object = object> = {
   ariaLabel: string
-  items: SMUIDataTreeListItem<I, K>[]
+  items: SMUIDataTreeListItem<I>[]
   renderItemContent: (
-    node: SMUIDataTreeListItem<I, K>,
+    item: SMUIDataTreeListItem<I>,
     renderProps: SMUIDataTreeListItemRenderProps
   ) => React.ReactNode
   classNames?: Partial<SlottedClassNames<typeof smuiDataTreeListStyles>>
   styles?: VariantProps<typeof smuiDataTreeListStyles>
 } & Omit<TreeProps<I>, "children" | "className" | "items">
 
-export function SMUIDataTreeList<
-  I extends object = object,
-  K extends string | undefined = undefined,
->({
+export function SMUIDataTreeList<I extends object = object>({
   items,
   renderItemContent,
   ariaLabel,
   styles,
   classNames,
   ...props
-}: SMUIDataTreeListProps<I, K>) {
+}: SMUIDataTreeListProps<I>) {
   const { list, item } = smuiDataTreeListStyles(styles)
 
   const listStyles = list({ className: classNames?.list })

@@ -1,88 +1,54 @@
-:root {
-  --smui-space-xxs: 1px;
-  --smui-space-xs: 2px;
-  --smui-space-sm: 4px;
-  --smui-space-md: 8px;
-  --smui-space-lg: 12px;
-  --smui-space-xl: 20px;
-  --smui-space-xxl: 28px;
+@theme {
+  --spacing-space-xxs: 1px;
+  --spacing-space-xs: 2px;
+  --spacing-space-sm: 4px;
+  --spacing-space-md: 8px;
+  --spacing-space-lg: 12px;
+  --spacing-space-xl: 20px;
+  --spacing-space-xxl: 28px;
 
-  --smui-font-size-xs: 10px;
-  --smui-font-size-sm: 12px;
-  --smui-font-size-md: 14px;
-  --smui-font-size-lg: 18px;
-  --smui-font-size-xl: 24px;
+  --spacing-content-xs: 12px;
+  --spacing-content-sm: 16px;
+  --spacing-content-md: 20px;
+  --spacing-content-lg: 24px;
+  --spacing-content-xl: 32px;
 
-  --smui-line-height-xs: 12px;
-  --smui-line-height-sm: 16px;
-  --smui-line-height-md: 20px;
-  --smui-line-height-lg: 24px;
-  --smui-line-height-xl: 32px;
-
-  --smui-container-width-xs: 288px;
-  --smui-container-width-sm: 576px;
-  --smui-container-width-md: 864px;
-  --smui-container-width-lg: 1152px;
-  --smui-container-width-xl: 1440px;
-
-  --smui-radius-xs: 2px;
-  --smui-radius-sm: 2px;
-  --smui-radius-md: 1px;
-  --smui-radius-lg: 2px;
-  --smui-radius-xl: 2px;
-}
-
-@theme inline {
-  --spacing-space-xxs: var(--smui-space-xxs);
-  --spacing-space-xs: var(--smui-space-xs);
-  --spacing-space-sm: var(--smui-space-sm);
-  --spacing-space-md: var(--smui-space-md);
-  --spacing-space-lg: var(--smui-space-lg);
-  --spacing-space-xl: var(--smui-space-xl);
-  --spacing-space-xxl: var(--smui-space-xxl);
-
-  --spacing-line-xs: var(--smui-line-height-xs);
-  --spacing-line-sm: var(--smui-line-height-sm);
-  --spacing-line-md: var(--smui-line-height-md);
-  --spacing-line-lg: var(--smui-line-height-lg);
-  --spacing-line-xl: var(--smui-line-height-xl);
-
-  --spacing-box-xs: calc(var(--smui-line-height-xs) + (var(--smui-space-xs) * 2));
-  --spacing-box-sm: calc(var(--smui-line-height-sm) + (var(--smui-space-sm) * 2));
-  --spacing-box-md: calc(var(--smui-line-height-md) + (var(--smui-space-md) * 2));
-  --spacing-box-lg: calc(var(--smui-line-height-lg) + (var(--smui-space-lg) * 2));
-  --spacing-box-xl: calc(var(--smui-line-height-xl) + (var(--smui-space-xl) * 2));
+  --spacing-box-xs: 16px;
+  --spacing-box-sm: 24px;
+  --spacing-box-md: 36px;
+  --spacing-box-lg: 48px;
+  --spacing-box-xl: 72px;
 
   --text-*: initial;
-  --text-xs: var(--smui-font-size-xs);
-  --text-sm: var(--smui-font-size-sm);
-  --text-md: var(--smui-font-size-md);
-  --text-lg: var(--smui-font-size-lg);
-  --text-xl: var(--smui-font-size-xl);
-  --text-xs--line-height: var(--smui-line-height-xs);
-  --text-sm--line-height: var(--smui-line-height-sm);
-  --text-md--line-height: var(--smui-line-height-md);
-  --text-lg--line-height: var(--smui-line-height-lg);
-  --text-xl--line-height: var(--smui-line-height-xl);
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-xs--line-height: 12px;
+  --text-sm--line-height: 16px;
+  --text-md--line-height: 20px;
+  --text-lg--line-height: 24px;
+  --text-xl--line-height: 32px;
 
   --radius-*: initial;
-  --radius-xs: var(--smui-radius-xs);
-  --radius-sm: var(--smui-radius-sm);
-  --radius-md: var(--smui-radius-md);
-  --radius-lg: var(--smui-radius-lg);
-  --radius-xl: var(--smui-radius-xl);
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
 
   --breakpoint-*: initial;
-  --breakpoint-xs: var(--smui-container-width-xs);
-  --breakpoint-sm: var(--smui-container-width-sm);
-  --breakpoint-md: var(--smui-container-width-md);
-  --breakpoint-lg: var(--smui-container-width-lg);
-  --breakpoint-xl: var(--smui-container-width-xl);
+  --breakpoint-xs: 288px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 864px;
+  --breakpoint-lg: 1152px;
+  --breakpoint-xl: 1440px;
 
   --container-*: initial;
-  --container-xs: var(--smui-container-width-xs);
-  --container-sm: var(--smui-container-width-sm);
-  --container-md: var(--smui-container-width-md);
-  --container-lg: var(--smui-container-width-lg);
-  --container-xl: var(--smui-container-width-xl);
+  --container-xs: 288px;
+  --container-sm: 576px;
+  --container-md: 864px;
+  --container-lg: 1152px;
+  --container-xl: 1440px;
 }
