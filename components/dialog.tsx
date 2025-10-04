@@ -152,7 +152,11 @@ export const smuiDialogStyles = tv({
       TRANSITION_DURATION_CLASSNAME,
     ],
     overlay: ["transition-all", TRANSITION_DURATION_CLASSNAME],
-    content: ["!outline-none", "transition-all flex h-full w-full flex-col"],
+    content: [
+      "!outline-none",
+      "transition-all flex h-full w-full flex-col",
+      TRANSITION_DURATION_CLASSNAME,
+    ],
   },
   variants: {
     visualType: {
