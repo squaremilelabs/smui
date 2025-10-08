@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronsUpDownIcon } from "lucide-react"
+import { ReactNode } from "react"
 import {
   Button,
   Select,
@@ -7,8 +9,6 @@ import {
   SelectProps,
   SelectValueRenderProps,
 } from "react-aria-components"
-import { ChevronsUpDownIcon } from "lucide-react"
-import { ReactNode } from "react"
 import { WithDefaultChildren } from "../utils/react-aria"
 import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { SMUIDialog, SMUIDialogProps } from "./dialog"

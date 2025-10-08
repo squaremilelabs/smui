@@ -1,5 +1,6 @@
 "use client"
 
+import { CheckIcon } from "lucide-react"
 import {
   ListBox,
   ListBoxItem,
@@ -10,9 +11,8 @@ import {
   MenuProps,
   MenuItemRenderProps,
 } from "react-aria-components"
-import { CheckIcon } from "lucide-react"
-import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 import { WithDefaultChildren } from "../utils/react-aria"
+import { SlottedClassNames, tv, VariantProps } from "../utils/tailwind"
 
 export type SMUIOptionListRenderType = "listbox" | "menu"
 export type SMUIOptionListVisualType = "action" | "select" | "tabs"
